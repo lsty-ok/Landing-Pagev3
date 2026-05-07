@@ -1,0 +1,22 @@
+# Tasks - BudJet 3D Landing Page Development
+
+- `[x]` Project Initialization & Setup
+    - `[x]` Scaffold Vite + React in `landing-pagev3`
+    - `[x]` Install packages: `three`, `@react-three/fiber`, `@react-three/drei`, `gsap`, `lenis`, `lucide-react`
+    - `[x]` Configure Tailwind CSS v4 in `vite.config.js` and `index.css`
+    - `[x]` Add global styles, typography, and custom scrollbar
+- `[x]` Build Premium Components
+    - `[x]` `FloatingNav.jsx` (Sticky, hide-on-scroll-down, reveal-on-scroll-up using GSAP)
+    - `[x]` `ThreeSmartphone.jsx` (R3F procedural 3D model with glowing charts and dashboard)
+    - `[x]` `HeroSection.jsx` (Hero layout + 3D Canvas integration & ScrollTrigger fly-in effect)
+    - `[x]` `FeaturesSection.jsx` (Alternating layout, 3D card tilt, GSAP parallax scroll animations)
+    - `[x]` `TestimonialSection.jsx` (Opposing infinite marquees, scroll speed-up, hover-to-pause, swipe/drag support)
+    - `[x]` `FaqSection.jsx` (Accordion layout with GSAP height animations `0` to `auto`)
+    - `[x]` `Footer.jsx` (Parallax scroll reveal from bottom)
+- `[x]` Integration & Global Scroll Management
+    - `[x]` Integrate components in `App.jsx`
+    - `[x]` Embed Lenis smooth scrolling and coordinate GSAP scroll triggers
+- `[x]` Build Verification & Polish
+    - `[x]` Audit build stability with `npm run build`
+    - `[ ]` Test interactive features via Browser subagent
+    - `[x]` Polish easing, spacing, colors, and overall aesthetics
