@@ -15,10 +15,15 @@ gsap.registerPlugin(ScrollTrigger)
 export default function FeaturesSection() {
   const containerRef = useRef(null)
   
-  // Card Refs
+  // Card Connection Anchors (Fixed positions for stable SVG tracing)
   const card1Ref = useRef(null)
   const card2Ref = useRef(null)
   const card3Ref = useRef(null)
+
+  // Expandable Area Content Refs
+  const expand1Ref = useRef(null)
+  const expand2Ref = useRef(null)
+  const expand3Ref = useRef(null)
 
   // Active Path Refs
   const path1Ref = useRef(null)
@@ -39,32 +44,75 @@ export default function FeaturesSection() {
   // Mobile trail ref
   const mobileTrailRef = useRef(null)
 
+  // Expandable state of the cards (independent toggles)
+  const [expanded, setExpanded] = useState({ 1: false, 2: false, 3: false })
+
   // SVG Paths state (calculated dynamically)
   const [paths, setPaths] = useState(null)
 
-  // Function to calculate exact motherboard-style coordinates based on card offsets
+  // Smooth expandable spring bounce toggle using GSAP 'back.out' ease
+  const toggleCard = (id) => {
+    const isCurrentlyExpanded = expanded[id]
+    const contentEl = id === 1 ? expand1Ref.current : id === 2 ? expand2Ref.current : id === 3 ? expand3Ref.current : null
+
+    // Toggle local state
+    setExpanded(prev => ({ ...prev, [id]: !isCurrentlyExpanded }))
+
+    if (!isCurrentlyExpanded) {
+      // "Swoosh" - Springy/elastic expanding bounce
+      gsap.killTweensOf(contentEl)
+      gsap.fromTo(contentEl, 
+        { height: 0, opacity: 0 },
+        { 
+          height: 'auto', 
+          opacity: 1, 
+          duration: 0.85, 
+          ease: 'back.out(1.5)', // Elastic spring feel!
+          onComplete: () => {
+            // Instantly sync layout shifts with ScrollTrigger for other sections
+            ScrollTrigger.refresh()
+          }
+        }
+      )
+    } else {
+      // Clean sliding collapse
+      gsap.killTweensOf(contentEl)
+      gsap.to(contentEl, {
+        height: 0,
+        opacity: 0,
+        duration: 0.55,
+        ease: 'power3.inOut',
+        onComplete: () => {
+          ScrollTrigger.refresh()
+        }
+      })
+    }
+  }
+
+  // Calculate exact motherboard-style coordinates based on card cell top offsets
   const updatePath = () => {
     if (!containerRef.current || !card1Ref.current || !card2Ref.current || !card3Ref.current) return
 
     const gridRect = containerRef.current.getBoundingClientRect()
+    
+    // We use the static connection anchors inside each cell to determine the y coordinates.
+    // Since anchors are placed at static positions, they remain completely unaffected by card height changes!
     const card1Rect = card1Ref.current.getBoundingClientRect()
     const card2Rect = card2Ref.current.getBoundingClientRect()
     const card3Rect = card3Ref.current.getBoundingClientRect()
 
-    // Calculate vertical centers of cards relative to the features grid container
-    const y1 = card1Rect.top - gridRect.top + card1Rect.height / 2
-    const y2 = card2Rect.top - gridRect.top + card2Rect.height / 2
-    const y3 = card3Rect.top - gridRect.top + card3Rect.height / 2
+    const y1 = card1Rect.top - gridRect.top
+    const y2 = card2Rect.top - gridRect.top
+    const y3 = card3Rect.top - gridRect.top
 
     const width = gridRect.width
     const x_mid = width / 2
     const bottom = gridRect.height
 
-    // Calculate Motherboard-style paths (incorporating 90° and 45° angled bends)
-    // Gap / column width is 160px. Column 2 has left edge: x_mid - 80px, right edge: x_mid + 80px.
-    // Node 1 is at x_mid - 80px, Node 2 is at x_mid + 80px, Node 3 is at x_mid - 80px.
-
-    // 1. Path 1: Top of section to Node 1 (Left Column)
+    // Motherboard trace calculations with 90° and 45° bends
+    // Node 1 is at (x_mid - 80, y1), Node 2 is at (x_mid + 80, y2), Node 3 is at (x_mid - 80, y3)
+    
+    // 1. Path 1: Top to Node 1
     const d1 = `M ${x_mid} 0 
                 L ${x_mid} ${y1 - 80} 
                 L ${x_mid - 40} ${y1 - 40} 
@@ -72,7 +120,7 @@ export default function FeaturesSection() {
                 L ${x_mid - 60} ${y1} 
                 L ${x_mid - 80} ${y1}`
 
-    // 2. Path 2: Node 1 to Node 2 (Right Column)
+    // 2. Path 2: Node 1 to Node 2
     const d2 = `M ${x_mid - 80} ${y1} 
                 L ${x_mid - 60} ${y1} 
                 L ${x_mid - 40} ${y1 + 20} 
@@ -84,7 +132,7 @@ export default function FeaturesSection() {
                 L ${x_mid + 60} ${y2} 
                 L ${x_mid + 80} ${y2}`
 
-    // 3. Path 3: Node 2 to Node 3 (Left Column)
+    // 3. Path 3: Node 2 to Node 3
     const d3 = `M ${x_mid + 80} ${y2} 
                 L ${x_mid + 60} ${y2} 
                 L ${x_mid + 40} ${y2 + 20} 
@@ -96,7 +144,7 @@ export default function FeaturesSection() {
                 L ${x_mid - 60} ${y3} 
                 L ${x_mid - 80} ${y3}`
 
-    // 4. Path 4: Node 3 to bottom of section
+    // 4. Path 4: Node 3 to bottom
     const d4 = `M ${x_mid - 80} ${y3} 
                 L ${x_mid - 60} ${y3} 
                 L ${x_mid - 40} ${y3 + 20} 
@@ -107,7 +155,7 @@ export default function FeaturesSection() {
     setPaths({ d1, d2, d3, d4, x_mid, y1, y2, y3, bottom })
   }
 
-  // Set up resize observer to dynamically recalculate paths on container scale changes
+  // ResizeObserver to automatically recalculate paths on container scale/wrapping
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
@@ -117,7 +165,6 @@ export default function FeaturesSection() {
     })
     observer.observe(container)
 
-    // Fallback trigger after a short duration to ensure fully-rendered images are accounted for
     const loadTimeout = setTimeout(() => {
       updatePath()
     }, 600)
@@ -131,13 +178,13 @@ export default function FeaturesSection() {
     }
   }, [])
 
-  // GSAP ScrollTrigger Animations matching desktop/mobile configurations
+  // GSAP Animations and Responsive Behaviors
   useEffect(() => {
     if (!paths) return
 
     const mm = gsap.matchMedia()
 
-    // DESKTOP ANIMATIONS (>= 768px)
+    // DESKTOP SYSTEM (>= 768px)
     mm.add("(min-width: 768px)", () => {
       const activePath1 = path1Ref.current
       const activePath2 = path2Ref.current
@@ -159,7 +206,7 @@ export default function FeaturesSection() {
       setupPath(activePath3)
       setupPath(activePath4)
 
-      // Initialize all nodes and glow rings to dimmed/scale state
+      // Initial nodes states
       gsap.set([node1Ref.current, node2Ref.current, node3Ref.current], {
         scale: 0.3,
         opacity: 0.1,
@@ -169,8 +216,10 @@ export default function FeaturesSection() {
         opacity: 0,
       })
 
-      // Initialize all cards to transparent/dark state
-      gsap.set([card1Ref.current, card2Ref.current, card3Ref.current], {
+      // Initial card glassmorphism dimmed states
+      gsap.set([card1Ref.current.parentNode.querySelector('.glass-card-container'), 
+                card2Ref.current.parentNode.querySelector('.glass-card-container'), 
+                card3Ref.current.parentNode.querySelector('.glass-card-container')], {
         opacity: 0.15,
         filter: 'brightness(0.3) blur(2px)',
         scale: 0.97,
@@ -178,29 +227,28 @@ export default function FeaturesSection() {
         boxShadow: '0 0 0px rgba(0, 0, 0, 0)',
       })
 
-      // Initialize card internal elements for sliding reveal
+      // Hide card elements inside for staggering slide-reveal
       gsap.set([
-        card1Ref.current.querySelectorAll('.card-animate-el'),
-        card2Ref.current.querySelectorAll('.card-animate-el'),
-        card3Ref.current.querySelectorAll('.card-animate-el')
+        card1Ref.current.parentNode.querySelectorAll('.card-animate-el'),
+        card2Ref.current.parentNode.querySelectorAll('.card-animate-el'),
+        card3Ref.current.parentNode.querySelectorAll('.card-animate-el')
       ], {
         y: 20,
         opacity: 0,
       })
 
-      // Master GSAP scroll timeline
+      // Master GSAP scroll-triggered timeline
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: 'top 35%',
           end: 'bottom 85%',
-          scrub: 1.2, // Ultra-smooth data energy flow speed
+          scrub: 1.2,
           markers: false,
         }
       })
 
-      // ---- FEATURE 1: Anggaran Pintar ----
-      // 1. Draw Path 1 to Node 1
+      // ---- FITUR 1: Anggaran Pintar ----
       tl.to(activePath1, {
         strokeDashoffset: 0,
         ease: 'none',
@@ -211,7 +259,7 @@ export default function FeaturesSection() {
         duration: 0.2,
       }, 'segment1+=0.5')
 
-      // 2. Node 1 Explosion + Card 1 Activation (Lime Green)
+      // Node 1 explosion + Card 1 Activation (Lime green theme)
       tl.to(node1Ref.current, {
         scale: 1.6,
         backgroundColor: '#D4E866',
@@ -228,7 +276,7 @@ export default function FeaturesSection() {
         opacity: 0.3,
         duration: 0.3,
       }, 'node1Hit+=0.3')
-      .to(card1Ref.current, {
+      .to(card1Ref.current.parentNode.querySelector('.glass-card-container'), {
         opacity: 1,
         filter: 'brightness(1) blur(0px)',
         scale: 1,
@@ -236,7 +284,7 @@ export default function FeaturesSection() {
         boxShadow: '0 0 40px rgba(212, 232, 102, 0.22)',
         duration: 0.5,
       }, 'node1Hit')
-      .to(card1Ref.current.querySelectorAll('.card-animate-el'), {
+      .to(card1Ref.current.parentNode.querySelectorAll('.card-animate-el'), {
         y: 0,
         opacity: 1,
         stagger: 0.08,
@@ -244,8 +292,7 @@ export default function FeaturesSection() {
         ease: 'power2.out',
       }, 'node1Hit+=0.1')
 
-      // ---- FEATURE 2: Asisten Suara ----
-      // 3. Draw Path 2 to Node 2
+      // ---- FITUR 2: Asisten Suara ----
       .to(activePath2, {
         strokeDashoffset: 0,
         ease: 'none',
@@ -256,7 +303,7 @@ export default function FeaturesSection() {
         duration: 0.2,
       }, 'segment2+=0.5')
 
-      // 4. Node 2 Explosion + Card 2 Activation (Tech Blue)
+      // Node 2 explosion + Card 2 Activation (Tech Blue theme)
       .to(node2Ref.current, {
         scale: 1.6,
         backgroundColor: '#60A5FA',
@@ -273,7 +320,7 @@ export default function FeaturesSection() {
         opacity: 0.3,
         duration: 0.3,
       }, 'node2Hit+=0.3')
-      .to(card2Ref.current, {
+      .to(card2Ref.current.parentNode.querySelector('.glass-card-container'), {
         opacity: 1,
         filter: 'brightness(1) blur(0px)',
         scale: 1,
@@ -281,7 +328,7 @@ export default function FeaturesSection() {
         boxShadow: '0 0 40px rgba(96, 165, 250, 0.22)',
         duration: 0.5,
       }, 'node2Hit')
-      .to(card2Ref.current.querySelectorAll('.card-animate-el'), {
+      .to(card2Ref.current.parentNode.querySelectorAll('.card-animate-el'), {
         y: 0,
         opacity: 1,
         stagger: 0.08,
@@ -289,8 +336,7 @@ export default function FeaturesSection() {
         ease: 'power2.out',
       }, 'node2Hit+=0.1')
 
-      // ---- FEATURE 3: Laporan Bulanan ----
-      // 5. Draw Path 3 to Node 3
+      // ---- FITUR 3: Laporan Bulanan ----
       .to(activePath3, {
         strokeDashoffset: 0,
         ease: 'none',
@@ -301,7 +347,7 @@ export default function FeaturesSection() {
         duration: 0.2,
       }, 'segment3+=0.5')
 
-      // 6. Node 3 Explosion + Card 3 Activation (Lime Green)
+      // Node 3 explosion + Card 3 Activation (Lime green theme)
       .to(node3Ref.current, {
         scale: 1.6,
         backgroundColor: '#D4E866',
@@ -318,7 +364,7 @@ export default function FeaturesSection() {
         opacity: 0.3,
         duration: 0.3,
       }, 'node3Hit+=0.3')
-      .to(card3Ref.current, {
+      .to(card3Ref.current.parentNode.querySelector('.glass-card-container'), {
         opacity: 1,
         filter: 'brightness(1) blur(0px)',
         scale: 1,
@@ -326,7 +372,7 @@ export default function FeaturesSection() {
         boxShadow: '0 0 40px rgba(212, 232, 102, 0.22)',
         duration: 0.5,
       }, 'node3Hit')
-      .to(card3Ref.current.querySelectorAll('.card-animate-el'), {
+      .to(card3Ref.current.parentNode.querySelectorAll('.card-animate-el'), {
         y: 0,
         opacity: 1,
         stagger: 0.08,
@@ -335,17 +381,22 @@ export default function FeaturesSection() {
       }, 'node3Hit+=0.1')
 
       // ---- PATH TERMINATION ----
-      // 7. Draw Path 4 to the bottom of the section
       .to(activePath4, {
         strokeDashoffset: 0,
         ease: 'none',
       }, 'segment4')
     })
 
-    // MOBILE ANIMATIONS (< 768px)
+    // MOBILE SYSTEM (< 768px)
     mm.add("(max-width: 767px)", () => {
-      // Ensure all cards are fully bright, readable, and default scaling on mobile
-      gsap.set([card1Ref.current, card2Ref.current, card3Ref.current], {
+      // Keep cards clean and active instantly on mobile
+      const cards = [
+        card1Ref.current.parentNode.querySelector('.glass-card-container'),
+        card2Ref.current.parentNode.querySelector('.glass-card-container'),
+        card3Ref.current.parentNode.querySelector('.glass-card-container')
+      ]
+
+      gsap.set(cards, {
         opacity: 1,
         filter: 'brightness(1) blur(0px)',
         scale: 1,
@@ -354,15 +405,15 @@ export default function FeaturesSection() {
       })
 
       gsap.set([
-        card1Ref.current.querySelectorAll('.card-animate-el'),
-        card2Ref.current.querySelectorAll('.card-animate-el'),
-        card3Ref.current.querySelectorAll('.card-animate-el')
+        card1Ref.current.parentNode.querySelectorAll('.card-animate-el'),
+        card2Ref.current.parentNode.querySelectorAll('.card-animate-el'),
+        card3Ref.current.parentNode.querySelectorAll('.card-animate-el')
       ], {
         y: 0,
         opacity: 1,
       })
 
-      // Mobile left-aligned circuit line height animation
+      // Mobile vertical glow line trail
       gsap.fromTo(mobileTrailRef.current, 
         { height: '0%' },
         {
@@ -376,9 +427,8 @@ export default function FeaturesSection() {
         }
       )
 
-      // Staggered cards entry fade-up as they enter viewport
-      const cards = [card1Ref.current, card2Ref.current, card3Ref.current]
-      cards.forEach((card, i) => {
+      // Simple staggered cards entries on scroll
+      cards.forEach((card) => {
         gsap.fromTo(card,
           { opacity: 0, y: 50 },
           {
@@ -406,7 +456,7 @@ export default function FeaturesSection() {
       id="fitur" 
       className="py-24 sm:py-32 bg-slate-950 text-white relative overflow-hidden"
     >
-      {/* Dynamic ambient dark glowing layers */}
+      {/* Background radial soft glowing backdrops */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-brand-lime/5 rounded-full blur-[120px] pointer-events-none"></div>
       <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-brand-blue/5 rounded-full blur-[150px] pointer-events-none"></div>
 
@@ -427,13 +477,12 @@ export default function FeaturesSection() {
 
         {/* 
           Features Grid Container
-          This grid dynamically aligns the columns of cards and houses the circuit SVG overlay.
         */}
         <div 
           ref={containerRef} 
-          className="relative grid grid-cols-1 md:grid-cols-[1fr_160px_1fr] gap-x-8 gap-y-16 md:gap-y-28 items-stretch"
+          className="relative grid grid-cols-1 md:grid-cols-[1fr_160px_1fr] gap-x-8 gap-y-16 md:gap-y-24 items-start"
         >
-          {/* Mobile vertical circuit glowing line (rendered on the left margin for mobile view) */}
+          {/* Mobile Left Glowing Trail Line */}
           <div className="absolute left-3 top-0 bottom-0 w-[2px] bg-slate-900 md:hidden pointer-events-none rounded-full">
             <div 
               ref={mobileTrailRef} 
@@ -442,14 +491,13 @@ export default function FeaturesSection() {
             ></div>
           </div>
 
-          {/* DYNAMIC SVG LAYER (Desktop/Tablet motherboard traces) */}
+          {/* DYNAMIC SVG LAYER (Desktop/Tablet Motherboard Tracks) */}
           {paths && (
             <svg 
               className="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
               style={{ zIndex: 0 }}
             >
               <defs>
-                {/* Neon Glow filters for energetic look */}
                 <filter id="glow-lime" x="-20%" y="-20%" width="140%" height="140%">
                   <feGaussianBlur stdDeviation="5" result="blur" />
                   <feMerge>
@@ -466,7 +514,7 @@ export default function FeaturesSection() {
                 </filter>
               </defs>
 
-              {/* BACKGROUND REDUP/SAMAR TRACES */}
+              {/* BACK GROUND DIMMED TRACES */}
               <path d={paths.d1} stroke="#101726" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
               <path d={paths.d1} stroke="#1E293B" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.4" />
               
@@ -479,7 +527,7 @@ export default function FeaturesSection() {
               <path d={paths.d4} stroke="#101726" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
               <path d={paths.d4} stroke="#1E293B" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.4" />
 
-              {/* ENERGETIC GLOWING TRACES (Animated with GSAP) */}
+              {/* GLOWING ACTIVE PATHS */}
               <path 
                 ref={path1Ref} 
                 d={paths.d1} 
@@ -521,12 +569,12 @@ export default function FeaturesSection() {
                 filter="url(#glow-lime)" 
               />
 
-              {/* BACKGROUND CIRCLE SLEEVES FOR NODES */}
+              {/* BACKGROUND SLEEVES */}
               <circle cx={paths.x_mid - 80} cy={paths.y1} r="9" fill="#0B0F19" stroke="#1E293B" strokeWidth="1.5" />
               <circle cx={paths.x_mid + 80} cy={paths.y2} r="9" fill="#0B0F19" stroke="#1E293B" strokeWidth="1.5" />
               <circle cx={paths.x_mid - 80} cy={paths.y3} r="9" fill="#0B0F19" stroke="#1E293B" strokeWidth="1.5" />
 
-              {/* ENERGETIC TRIGGER NODES (TITIK PIJAR) */}
+              {/* ACTIVE NODES */}
               {/* Node 1 */}
               <circle 
                 ref={node1Ref} 
@@ -592,16 +640,18 @@ export default function FeaturesSection() {
           {/* ========================================================= */}
           {/* BARIS 1: FEATURE 1 (Anggaran Pintar - Left Column) */}
           {/* ========================================================= */}
-          <div className="md:col-start-1 pl-8 md:pl-0">
+          <div className="md:col-start-1 pl-8 md:pl-0 relative flex flex-col justify-start">
+            {/* Stable anchor for sirkuit, positioned relative to cell parent */}
+            <div ref={card1Ref} className="absolute left-0 top-[220px] w-1 h-1 pointer-events-none"></div>
+
             <div 
-              ref={card1Ref} 
-              className="relative p-6 sm:p-8 rounded-3xl border border-white/10 bg-slate-950/60 backdrop-blur-xl transition-all duration-500 overflow-hidden flex flex-col justify-between h-full hover:border-white/20 group"
+              className="glass-card-container relative p-6 sm:p-8 rounded-3xl border border-white/10 bg-slate-950/60 backdrop-blur-xl transition-all duration-500 overflow-hidden flex flex-col justify-between h-auto hover:border-white/20 group"
             >
               {/* Dynamic decorative backdrop orb */}
               <div className="absolute -right-24 -top-24 w-48 h-48 rounded-full bg-brand-lime/5 blur-[50px] group-hover:bg-brand-lime/10 transition-colors duration-500 pointer-events-none"></div>
 
-              {/* Card visual showcase */}
-              <div className="card-animate-el w-full aspect-[4/3] bg-white/5 rounded-2xl border border-white/5 flex items-center justify-center relative overflow-hidden mb-8">
+              {/* Visual Showcase */}
+              <div className="card-animate-el w-full aspect-[4/3] bg-white/5 rounded-2xl border border-white/5 flex items-center justify-center relative overflow-hidden mb-6">
                 <div className="absolute inset-0 bg-gradient-to-tr from-brand-lime/10 to-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
                 <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
                   <img 
@@ -612,7 +662,7 @@ export default function FeaturesSection() {
                 </div>
               </div>
 
-              {/* Card text content */}
+              {/* Base Minimalist Card Content */}
               <div>
                 <div className="card-animate-el flex items-center space-x-3 mb-4">
                   <div className="w-9 h-9 bg-brand-lime/10 rounded-xl flex items-center justify-center text-brand-lime font-bold border border-brand-lime/20 shadow-sm">
@@ -625,50 +675,69 @@ export default function FeaturesSection() {
                   Anggaran Pintar Harian
                 </h3>
                 
-                <p className="card-animate-el text-slate-400 text-sm sm:text-base leading-relaxed mb-6 font-light">
-                  Lupakan pencatatan manual yang membosankan. BudJet secara otomatis menganalisis, mencatat, dan mengelompokkan pengeluaran harian Anda agar keuangan tetap terjaga.
+                <p className="card-animate-el text-slate-400 text-sm sm:text-base leading-relaxed font-light mb-2">
+                  Lupakan pencatatan manual yang membosankan. Biarkan AI BudJet menyusun anggaran harianmu secara otomatis.
                 </p>
-
-                <ul className="card-animate-el space-y-3.5">
-                  <li className="flex items-start">
-                    <div className="w-5 h-5 rounded-full bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-lime/30">
-                      <Check className="w-2.5 h-2.5 stroke-[3]" />
-                    </div>
-                    <span className="text-slate-300 text-xs sm:text-sm font-medium">Kategorisasi otomatis berbasis AI (Makanan, Kos, Buku, Kopi).</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-5 h-5 rounded-full bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-lime/30">
-                      <Check className="w-2.5 h-2.5 stroke-[3]" />
-                    </div>
-                    <span className="text-slate-300 text-xs sm:text-sm font-medium">Notifikasi instan jika Anda melewati batas limit harian.</span>
-                  </li>
-                </ul>
               </div>
+
+              {/* EXPANDABLE TEXT CONTAINER (Smooth spring bounce auto-height) */}
+              <div 
+                ref={expand1Ref}
+                className="overflow-hidden h-0 opacity-0"
+              >
+                <div className="pt-4 border-t border-white/5 mt-4">
+                  <p className="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+                    BudJet secara cerdas menganalisis kebiasaan belanjamu dan menyusun batas pengeluaran harian yang realistis. Kamu tidak perlu lagi khawatir kehabisan uang saku di akhir bulan karena asisten AI kami selalu menjaga dompetmu tetap aman.
+                  </p>
+
+                  <ul className="space-y-3.5 mb-2">
+                    <li className="flex items-start">
+                      <div className="w-5 h-5 rounded-full bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-lime/30">
+                        <Check className="w-2.5 h-2.5 stroke-[3]" />
+                      </div>
+                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Kategorisasi otomatis berbasis AI (Makanan, Kos, Buku, Kopi).</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="w-5 h-5 rounded-full bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-lime/30">
+                        <Check className="w-2.5 h-2.5 stroke-[3]" />
+                      </div>
+                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Notifikasi instan jika Anda melewati batas limit harian.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Interactive Button */}
+              <button
+                onClick={() => toggleCard(1)}
+                className="card-animate-el mt-6 w-full px-5 py-3 rounded-xl border border-white/10 text-xs font-semibold uppercase tracking-wider bg-white/5 text-brand-lime hover:border-brand-lime/30 hover:bg-brand-lime/5 hover:shadow-[0_0_20px_rgba(212,232,102,0.12)] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+              >
+                {expanded[1] ? "Tutup Deskripsi ↑" : "Pelajari Lebih Lanjut ↴"}
+              </button>
             </div>
           </div>
-          {/* Spacer Column */}
+          {/* Spacers */}
           <div className="hidden md:block md:col-start-2"></div>
-          {/* Spacer Right Column */}
           <div className="hidden md:block md:col-start-3"></div>
 
           {/* ========================================================= */}
           {/* BARIS 2: FEATURE 2 (Asisten Suara - Right Column) */}
           {/* ========================================================= */}
-          {/* Spacer Left Column */}
           <div className="hidden md:block md:col-start-1"></div>
-          {/* Spacer Column */}
           <div className="hidden md:block md:col-start-2"></div>
           
-          <div className="md:col-start-3 pl-8 md:pl-0">
+          <div className="md:col-start-3 pl-8 md:pl-0 relative flex flex-col justify-start">
+            {/* Stable anchor for sirkuit, positioned relative to cell parent */}
+            <div ref={card2Ref} className="absolute left-0 top-[220px] w-1 h-1 pointer-events-none"></div>
+
             <div 
-              ref={card2Ref} 
-              className="relative p-6 sm:p-8 rounded-3xl border border-white/10 bg-slate-950/60 backdrop-blur-xl transition-all duration-500 overflow-hidden flex flex-col justify-between h-full hover:border-white/20 group"
+              className="glass-card-container relative p-6 sm:p-8 rounded-3xl border border-white/10 bg-slate-950/60 backdrop-blur-xl transition-all duration-500 overflow-hidden flex flex-col justify-between h-auto hover:border-white/20 group"
             >
               {/* Dynamic decorative backdrop orb */}
               <div className="absolute -right-24 -top-24 w-48 h-48 rounded-full bg-brand-blue/5 blur-[50px] group-hover:bg-brand-blue/10 transition-colors duration-500 pointer-events-none"></div>
 
-              {/* Card visual showcase */}
-              <div className="card-animate-el w-full aspect-[4/3] bg-white/5 rounded-2xl border border-white/5 flex items-center justify-center relative overflow-hidden mb-8">
+              {/* Visual Showcase */}
+              <div className="card-animate-el w-full aspect-[4/3] bg-white/5 rounded-2xl border border-white/5 flex items-center justify-center relative overflow-hidden mb-6">
                 <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/10 to-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
                 <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
                   <img 
@@ -679,7 +748,7 @@ export default function FeaturesSection() {
                 </div>
               </div>
 
-              {/* Card text content */}
+              {/* Base Minimalist Card Content */}
               <div>
                 <div className="card-animate-el flex items-center space-x-3 mb-4">
                   <div className="w-9 h-9 bg-brand-blue/10 rounded-xl flex items-center justify-center text-brand-blue font-bold border border-brand-blue/20 shadow-sm">
@@ -692,41 +761,63 @@ export default function FeaturesSection() {
                   Asisten Suara Instan
                 </h3>
                 
-                <p className="card-animate-el text-slate-400 text-sm sm:text-base leading-relaxed mb-6 font-light">
-                  Capek mengetik pengeluaran setiap waktu? Cukup ucapkan pengeluaran Anda. Teknologi pengenalan suara kami yang cerdas memahami nominal, nama barang, dan langsung memasukkannya ke dalam tabel budget.
+                <p className="card-animate-el text-slate-400 text-sm sm:text-base leading-relaxed font-light mb-2">
+                  Capek mengetik pengeluaran? Cukup ucapkan nominal belanjaanmu dan biarkan asisten suara pintar kami mencatatnya.
                 </p>
-
-                <ul className="card-animate-el space-y-3.5">
-                  <li className="flex items-start">
-                    <div className="w-5 h-5 rounded-full bg-brand-blue/20 text-brand-blue flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-blue/30">
-                      <Check className="w-2.5 h-2.5 stroke-[3]" />
-                    </div>
-                    <span className="text-slate-300 text-xs sm:text-sm font-medium">Akurasi tinggi mengenal dialek dan ungkapan kasual sehari-hari.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-5 h-5 rounded-full bg-brand-blue/20 text-brand-blue flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-blue/30">
-                      <Check className="w-2.5 h-2.5 stroke-[3]" />
-                    </div>
-                    <span className="text-slate-300 text-xs sm:text-sm font-medium">Konversi text-to-finance dalam waktu kurang dari 1 detik.</span>
-                  </li>
-                </ul>
               </div>
+
+              {/* EXPANDABLE TEXT CONTAINER (Smooth spring bounce auto-height) */}
+              <div 
+                ref={expand2Ref}
+                className="overflow-hidden h-0 opacity-0"
+              >
+                <div className="pt-4 border-t border-white/5 mt-4">
+                  <p className="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+                    Ditenagai oleh teknologi Speech-to-Finance generasi terbaru, asisten suara BudJet memahami nominal, nama barang, bahkan dialek kasual sehari-hari. Cukup tekan tombol suara dan katakan 'Beli kopi 15 ribu tadi pagi'—dan selesai!
+                  </p>
+
+                  <ul className="space-y-3.5 mb-2">
+                    <li className="flex items-start">
+                      <div className="w-5 h-5 rounded-full bg-brand-blue/20 text-brand-blue flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-blue/30">
+                        <Check className="w-2.5 h-2.5 stroke-[3]" />
+                      </div>
+                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Akurasi tinggi mengenal dialek dan ungkapan kasual sehari-hari.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="w-5 h-5 rounded-full bg-brand-blue/20 text-brand-blue flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-blue/30">
+                        <Check className="w-2.5 h-2.5 stroke-[3]" />
+                      </div>
+                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Konversi text-to-finance dalam waktu kurang dari 1 detik.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Interactive Button */}
+              <button
+                onClick={() => toggleCard(2)}
+                className="card-animate-el mt-6 w-full px-5 py-3 rounded-xl border border-white/10 text-xs font-semibold uppercase tracking-wider bg-white/5 text-brand-blue hover:border-brand-blue/30 hover:bg-brand-blue/5 hover:shadow-[0_0_20px_rgba(96,165,250,0.12)] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+              >
+                {expanded[2] ? "Tutup Deskripsi ↑" : "Pelajari Lebih Lanjut ↴"}
+              </button>
             </div>
           </div>
 
           {/* ========================================================= */}
           {/* BARIS 3: FEATURE 3 (Laporan Bulanan - Left Column) */}
           {/* ========================================================= */}
-          <div className="md:col-start-1 pl-8 md:pl-0">
+          <div className="md:col-start-1 pl-8 md:pl-0 relative flex flex-col justify-start">
+            {/* Stable anchor for sirkuit, positioned relative to cell parent */}
+            <div ref={card3Ref} className="absolute left-0 top-[220px] w-1 h-1 pointer-events-none"></div>
+
             <div 
-              ref={card3Ref} 
-              className="relative p-6 sm:p-8 rounded-3xl border border-white/10 bg-slate-950/60 backdrop-blur-xl transition-all duration-500 overflow-hidden flex flex-col justify-between h-full hover:border-white/20 group"
+              className="glass-card-container relative p-6 sm:p-8 rounded-3xl border border-white/10 bg-slate-950/60 backdrop-blur-xl transition-all duration-500 overflow-hidden flex flex-col justify-between h-auto hover:border-white/20 group"
             >
               {/* Dynamic decorative backdrop orb */}
               <div className="absolute -right-24 -top-24 w-48 h-48 rounded-full bg-brand-lime/5 blur-[50px] group-hover:bg-brand-lime/10 transition-colors duration-500 pointer-events-none"></div>
 
-              {/* Card visual showcase */}
-              <div className="card-animate-el w-full aspect-[4/3] bg-white/5 rounded-2xl border border-white/5 flex items-center justify-center relative overflow-hidden mb-8">
+              {/* Visual Showcase */}
+              <div className="card-animate-el w-full aspect-[4/3] bg-white/5 rounded-2xl border border-white/5 flex items-center justify-center relative overflow-hidden mb-6">
                 <div className="absolute inset-0 bg-gradient-to-tr from-brand-lime/10 to-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
                 <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
                   <img 
@@ -737,7 +828,7 @@ export default function FeaturesSection() {
                 </div>
               </div>
 
-              {/* Card text content */}
+              {/* Base Minimalist Card Content */}
               <div>
                 <div className="card-animate-el flex items-center space-x-3 mb-4">
                   <div className="w-9 h-9 bg-brand-lime/10 rounded-xl flex items-center justify-center text-brand-lime font-bold border border-brand-lime/20 shadow-sm">
@@ -750,30 +841,49 @@ export default function FeaturesSection() {
                   Laporan Bulanan PDF &amp; Excel
                 </h3>
                 
-                <p className="card-animate-el text-slate-400 text-sm sm:text-base leading-relaxed mb-6 font-light">
-                  Butuh menyusun laporan bulanan untuk orang tua atau keperluan beasiswa? Hanya dengan satu klik, ekspor seluruh rekap pengeluaran dan pemasukan Anda dalam bentuk grafik elegan, file Excel, atau dokumen PDF rapi.
+                <p className="card-animate-el text-slate-400 text-sm sm:text-base leading-relaxed font-light mb-2">
+                  Ekspor seluruh rekap keuanganmu menjadi berkas PDF &amp; Excel yang rapi hanya dalam satu kali klik.
                 </p>
-
-                <ul className="card-animate-el space-y-3.5">
-                  <li className="flex items-start">
-                    <div className="w-5 h-5 rounded-full bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-lime/30">
-                      <Check className="w-2.5 h-2.5 stroke-[3]" />
-                    </div>
-                    <span className="text-slate-300 text-xs sm:text-sm font-medium">Desain grafik interaktif yang mudah dipahami orang tua.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-5 h-5 rounded-full bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-lime/30">
-                      <Check className="w-2.5 h-2.5 stroke-[3]" />
-                    </div>
-                    <span className="text-slate-300 text-xs sm:text-sm font-medium">Ekspor langsung terintegrasi ke email, WhatsApp, atau Drive.</span>
-                  </li>
-                </ul>
               </div>
+
+              {/* EXPANDABLE TEXT CONTAINER (Smooth spring bounce auto-height) */}
+              <div 
+                ref={expand3Ref}
+                className="overflow-hidden h-0 opacity-0"
+              >
+                <div className="pt-4 border-t border-white/5 mt-4">
+                  <p className="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+                    Membuat laporan pertanggungjawaban untuk orang tua atau pengajuan beasiswa kini menjadi sangat mudah. BudJet menyusun grafik visual interaktif yang cantik dan profesional, siap dikirim dalam format PDF atau spreadsheet Excel.
+                  </p>
+
+                  <ul className="space-y-3.5 mb-2">
+                    <li className="flex items-start">
+                      <div className="w-5 h-5 rounded-full bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-lime/30">
+                        <Check className="w-2.5 h-2.5 stroke-[3]" />
+                      </div>
+                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Desain grafik interaktif yang mudah dipahami orang tua.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="w-5 h-5 rounded-full bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-lime/30">
+                        <Check className="w-2.5 h-2.5 stroke-[3]" />
+                      </div>
+                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Ekspor langsung terintegrasi ke email, WhatsApp, atau Drive.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Interactive Button */}
+              <button
+                onClick={() => toggleCard(3)}
+                className="card-animate-el mt-6 w-full px-5 py-3 rounded-xl border border-white/10 text-xs font-semibold uppercase tracking-wider bg-white/5 text-brand-lime hover:border-brand-lime/30 hover:bg-brand-lime/5 hover:shadow-[0_0_20px_rgba(212,232,102,0.12)] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+              >
+                {expanded[3] ? "Tutup Deskripsi ↑" : "Pelajari Lebih Lanjut ↴"}
+              </button>
             </div>
           </div>
-          {/* Spacer Column */}
+          {/* Spacers */}
           <div className="hidden md:block md:col-start-2"></div>
-          {/* Spacer Right Column */}
           <div className="hidden md:block md:col-start-3"></div>
 
         </div>
