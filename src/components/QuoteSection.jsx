@@ -11,7 +11,7 @@ export default function QuoteSection() {
   const quoteMarkLeftRef = useRef(null)
   const quoteMarkRightRef = useRef(null)
 
-  const quoteText = "Anggaran adalah memberi tahu uangmu ke mana harus pergi, bukan bertanya-tanya ke mana perginya."
+  const quoteText = "A budget is telling your money where to go instead of wondering where it went."
   const words = quoteText.split(" ")
 
   useEffect(() => {

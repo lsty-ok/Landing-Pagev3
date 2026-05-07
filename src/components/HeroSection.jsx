@@ -57,11 +57,6 @@ export default function HeroSection() {
 
         {/* Right Side Content Block */}
         <div className="w-full flex flex-col justify-center text-center md:text-left select-text">
-          {/* Badge */}
-          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-slate/5 border border-brand-slate/10 text-brand-slate text-xs font-bold uppercase tracking-wider mb-6 mx-auto md:mx-0 w-fit">
-            🚀 Personal Finance App for Students
-          </div>
-
           {/* Heading */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight text-brand-slate mb-6 leading-none">
             BudJet smarter,<br />

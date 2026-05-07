@@ -7,54 +7,62 @@ gsap.registerPlugin(ScrollTrigger)
 
 const TESTIMONIALS_COL_1 = [
   {
-    quote: "BudJet membantu saya mencatat ke mana perginya uang jajan bulanan secara otomatis. Sangat membantu!",
+    quote: "BudJet helps me track where my monthly allowance goes automatically. Incredibly helpful!",
     name: "Farhan Ardiansyah",
-    role: "Mahasiswa Sistem Informasi, UI",
+    role: "Information Systems Student, UI",
+    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
   },
   {
-    quote: "Fitur Voice Input-nya keren banget! Tinggal ngomong habis beli makan siang, langsung kecatat rapi.",
+    quote: "The Voice Input feature is amazing! I just speak after buying lunch and it's instantly logged.",
     name: "Siti Rahma",
-    role: "Mahasiswi Sastra Inggris, Unpad",
+    role: "English Literature Student, Unpad",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
   },
   {
-    quote: "Dulu pusing kalau akhir bulan sisa uang tinggal dikit. Sekarang bisa batasi limit harian di kos.",
+    quote: "I used to panic when my balance ran low at month-end. Now I can set a realistic daily limit.",
     name: "Bagus Prasetyo",
-    role: "Mahasiswa Teknik Mesin, ITS",
+    role: "Mechanical Engineering Student, ITS",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
   },
   {
-    quote: "Desain UI-nya estetik, bersih, dan modern banget. Gak bosen dipantau tiap hari.",
+    quote: "The UI design is gorgeous, clean, and ultra-modern. I love checking it every day.",
     name: "Nabila Putri",
-    role: "Mahasiswi Desain Komunikasi Visual, ITB",
+    role: "Visual Communication Design Student, ITB",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
   },
 ]
 
 const TESTIMONIALS_COL_2 = [
   {
-    quote: "Sangat terbantu buat ekspor laporan bulanan (.xlsx) buat bukti transfer uang saku dari orang tua.",
+    quote: "Incredibly useful to export monthly spreadsheet (.xlsx) reports as proof of transfer for my parents.",
     name: "Rian Hidayat",
-    role: "Mahasiswa Manajemen Keuangan, UGM",
+    role: "Finance Management Student, UGM",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
   },
   {
-    quote: "Aplikasi keuangan terbaik yang ramah di kantong mahasiswa. Gratis dan tanpa iklan mengganggu!",
+    quote: "The best finance app that is perfectly student-friendly. Free and entirely ad-free!",
     name: "Amanda Lestari",
-    role: "Mahasiswi Kedokteran, Universitas Airlangga",
+    role: "Medical Student, Airlangga University",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
   },
   {
-    quote: "Akhirnya bisa nabung buat beli laptop baru berkat pembagian kategori pos tabungan di BudJet.",
+    quote: "I can finally save up to buy a new laptop, thanks to custom category jars in BudJet.",
     name: "Dwi Cahyo",
-    role: "Mahasiswa Informatika, Undip",
+    role: "Computer Science Student, Undip",
+    avatar: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
   },
   {
-    quote: "Asisten AI-nya ngasih saran hemat yang masuk akal banget buat anak kos. Bintang lima!",
+    quote: "The AI assistant gives incredibly practical saving tips for dorm life. 5-stars!",
     name: "Putu Gede",
-    role: "Mahasiswa Akuntansi, Universitas Udayana",
+    role: "Accounting Student, Udayana University",
+    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
   },
 ]
@@ -183,27 +191,41 @@ export default function TestimonialSection() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-20 grid grid-cols-1 md:grid-cols-3 gap-16">
         
-        {/* Sticky Left Column (1/3 Width) */}
-        <div className="md:sticky md:top-32 h-fit select-text flex flex-col justify-center">
-          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-brand-lime text-xs font-bold uppercase tracking-wider mb-6 w-fit">
-            💬 Ulasan Pengguna
+        {/* Left Side Content Column */}
+        <div className="space-y-8 select-text flex flex-col justify-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-brand-lime text-xs font-bold uppercase tracking-wider mb-2 w-fit">
+            💬 Student Reviews
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-            Apa Kata Mereka?
+          
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            What They <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime to-white">
+              Are Saying
+            </span>
           </h2>
-          <p className="text-gray-400 text-base sm:text-lg font-light leading-relaxed mb-8">
-            Lebih dari 10.000 mahasiswa di seluruh Indonesia telah mengubah cara mengelola uang saku bersama BudJet. Intip cerita mereka!
+          
+          <p className="text-gray-400 text-base sm:text-lg lg:text-xl font-light leading-relaxed max-w-xl">
+            Over 10,000 students nationwide have revolutionized how they manage their allowances with BudJet. Explore their success stories!
           </p>
 
-          <div className="flex items-center space-x-2 bg-white/5 border border-white/10 p-4 rounded-2xl w-fit">
-            <div className="flex text-brand-lime">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-current" />
+          {/* Social Proof Stats Badge */}
+          <div className="pt-6 border-t border-white/10 flex items-center gap-4">
+            <div className="flex -space-x-2.5">
+              {[1, 2, 3, 4].map((num) => (
+                <img
+                  key={num}
+                  src={`https://images.unsplash.com/photo-${1500000000000 + num * 100000}?auto=format&fit=crop&w=80&h=80&q=80`}
+                  alt="Active Student user profile"
+                  className="w-9 h-9 rounded-full border-2 border-brand-slate object-cover"
+                />
               ))}
             </div>
-            <span className="text-xs font-bold tracking-tight text-gray-300">
-              Rata-rata 4.9/5 di Play Store &amp; App Store
-            </span>
+            <div className="text-sm">
+              <div className="font-extrabold text-white flex items-center gap-1">
+                ⭐⭐⭐⭐⭐ <span className="font-bold text-xs ml-1 bg-brand-lime text-brand-slate px-2 py-0.5 rounded-md">4.9/5</span>
+              </div>
+              <p className="text-gray-400 text-xs font-medium mt-0.5">Average 4.9/5 rating on Play Store &amp; App Store</p>
+            </div>
           </div>
         </div>
 

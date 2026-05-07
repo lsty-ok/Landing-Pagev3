@@ -404,7 +404,7 @@ export default function InteractivePhoneShowcase({
           <img
             src={texturePath}
             alt="BudJet Feature Showcase"
-            className="w-full h-full object-contain pointer-events-none select-none rounded-[42px] ring-1 ring-white/10"
+            className="w-full h-full object-contain pointer-events-none select-none"
             loading="lazy"
           />
         </div>

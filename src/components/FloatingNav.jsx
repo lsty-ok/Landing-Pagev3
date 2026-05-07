@@ -63,8 +63,8 @@ export default function FloatingNav() {
 
   const navItems = [
     { label: 'Home', href: '#home' },
-    { label: 'Fitur', href: '#fitur' },
-    { label: 'Ulasan', href: '#ulasan' },
+    { label: 'Features', href: '#fitur' },
+    { label: 'Reviews', href: '#ulasan' },
     { label: 'FAQ', href: '#faq' },
   ]
 
@@ -122,20 +122,19 @@ export default function FloatingNav() {
             ))}
           </div>
 
-          {/* Action Button CTA */}
           <div className="hidden md:flex items-center space-x-5">
             <a
               href="#login"
               className="text-xs font-bold text-brand-text-muted hover:text-brand-slate transition-colors duration-300 select-none"
             >
-              Masuk
+              Log In
             </a>
             <a
               href="#cta"
               onClick={(e) => scrollToSection(e, '#cta')}
               className="inline-flex items-center justify-center px-5 py-2 bg-brand-lime text-brand-slate hover:bg-brand-lime-dark rounded-full font-bold text-xs tracking-tight shadow-sm hover:shadow-[0_4px_15px_rgba(212,232,102,0.3)] hover:-translate-y-[1px] active:translate-y-0 transition-all duration-300 group select-none"
             >
-              Daftar
+              Sign Up
               <ArrowRight className="ml-1.5 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" />
             </a>
           </div>
@@ -178,7 +177,7 @@ export default function FloatingNav() {
               onClick={() => setMobileMenuOpen(false)}
               className="text-center py-2 text-sm font-semibold text-brand-slate hover:text-brand-text-muted transition-colors"
             >
-              Masuk
+              Log In
             </a>
             <a
               href="#cta"
@@ -188,7 +187,7 @@ export default function FloatingNav() {
               }}
               className="inline-flex items-center justify-center py-2.5 bg-brand-lime text-brand-slate hover:bg-brand-lime-dark rounded-full font-bold text-sm tracking-tight shadow-sm"
             >
-              Daftar Sekarang
+              Sign Up Now
               <ArrowRight className="ml-1.5 w-4 h-4" />
             </a>
           </div>

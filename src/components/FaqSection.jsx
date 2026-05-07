@@ -4,12 +4,12 @@ import { ChevronDown, HelpCircle } from 'lucide-react'
 
 const FAQ_ITEMS = [
   {
-    question: "Apakah BudJet benar-benar gratis untuk mahasiswa?",
-    answer: "Ya, 100% gratis! Seluruh fitur utama BudJet—pencatatan otomatis harian, asisten input suara cerdas, dan ekspor laporan bulanan—bisa diakses sepenuhnya secara gratis tanpa biaya tersembunyi ataupun iklan yang mengganggu.",
+    question: "Is BudJet completely free for students?",
+    answer: "Yes, 100% free! All core features of BudJet—including automated daily budgeting, smart voice logging, and monthly reports exports—are fully accessible for free with absolutely no hidden fees or intrusive advertisements.",
   },
   {
-    question: "Bagaimana cara kerja input suara (Voice Input)?",
-    answer: "Sangat mudah! Anda cukup menekan tombol mikrofon di aplikasi, lalu ucapkan transaksi Anda secara santai seperti, 'Beli jus alpukat 15 ribu'. AI kami akan langsung mengenali nominal (15.000) dan mengelompokkannya ke kategori yang sesuai (Makanan & Minuman) dalam sekejap.",
+    question: "How does the Instant Voice Logging feature work?",
+    answer: "It's extremely simple! Just tap the microphone button in the app and speak your transactions naturally, like, 'Bought an avocado juice for fifteen thousand'. Our finance AI instantly recognizes the amount and categorizes it under Food & Drinks in the blink of an eye.",
   },
 ]
 
@@ -61,13 +61,13 @@ export default function FaqSection() {
         {/* Section Header */}
         <div className="text-center mb-20">
           <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-slate/5 border border-brand-slate/10 text-brand-slate text-xs font-bold uppercase tracking-wider mb-6">
-            <HelpCircle className="w-4 h-4 mr-1.5 text-brand-slate" /> Pertanyaan Populer
+            <HelpCircle className="w-4 h-4 mr-1.5 text-brand-slate" /> Common Questions
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-slate tracking-tight mb-6">
-            Punya Pertanyaan?
+            Have Questions?
           </h2>
           <p className="text-brand-text-muted text-base sm:text-lg font-light">
-            Temukan jawaban untuk membantu Anda memulai langkah pintar mengelola uang saku bersama BudJet.
+            Find quick answers to help you start managing your daily allowance smarter and with total control.
           </p>
         </div>
 

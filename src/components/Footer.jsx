@@ -24,7 +24,7 @@ export default function Footer() {
               </span>
             </a>
             <p className="text-gray-400 text-sm font-light leading-relaxed max-w-sm">
-              Membantu mahasiswa mengelola keuangan harian dengan cerdas, cepat, dan otomatis menggunakan teknologi asisten AI &amp; input suara.
+              Helping students manage daily finances smartly, quickly, and automatically using AI assistance &amp; voice input technologies.
             </p>
             {/* Social media badges */}
             <div className="flex space-x-4 pt-2">
@@ -41,39 +41,39 @@ export default function Footer() {
 
           {/* Column 1: Links */}
           <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-brand-lime">Navigasi</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-brand-lime">Navigation</h4>
             <ul className="space-y-2.5 text-sm text-gray-400 font-light">
               <li>
                 <a href="#home" className="hover:text-brand-lime transition-colors">Home</a>
               </li>
               <li>
-                <a href="#fitur" className="hover:text-brand-lime transition-colors">Fitur Unggulan</a>
+                <a href="#fitur" className="hover:text-brand-lime transition-colors">Key Features</a>
               </li>
               <li>
-                <a href="#ulasan" className="hover:text-brand-lime transition-colors">Ulasan Mahasiswa</a>
+                <a href="#ulasan" className="hover:text-brand-lime transition-colors">Student Reviews</a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-brand-lime transition-colors">Tanya Jawab (FAQ)</a>
+                <a href="#faq" className="hover:text-brand-lime transition-colors">FAQ</a>
               </li>
             </ul>
           </div>
 
           {/* Column 2: Legal */}
           <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-brand-blue">Kebijakan</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-brand-blue">Legal</h4>
             <ul className="space-y-2.5 text-sm text-gray-400 font-light">
               <li>
-                <a href="#privacy" className="hover:text-brand-blue transition-colors">Kebijakan Privasi</a>
+                <a href="#privacy" className="hover:text-brand-blue transition-colors">Privacy Policy</a>
               </li>
               <li>
-                <a href="#terms" className="hover:text-brand-blue transition-colors">Syarat &amp; Ketentuan</a>
+                <a href="#terms" className="hover:text-brand-blue transition-colors">Terms &amp; Conditions</a>
               </li>
             </ul>
           </div>
 
           {/* Column 3: Contact */}
           <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-gray-300">Kontak Kami</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-gray-300">Contact</h4>
             <ul className="space-y-2.5 text-sm text-gray-400 font-light">
               <li className="flex items-center">
                 <span className="text-brand-lime mr-2 font-bold">•</span>
@@ -94,7 +94,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-gray-500 font-light">
-            &copy; {new Date().getFullYear()} BudJet Finance. Seluruh Hak Cipta Dilindungi.
+            &copy; {new Date().getFullYear()} BudJet Finance. All Rights Reserved.
           </p>
 
           {/* Scroll to Top Trigger */}
@@ -102,7 +102,7 @@ export default function Footer() {
             onClick={scrollToTop}
             className="group inline-flex items-center justify-center px-4 py-2 border border-white/10 rounded-full text-xs font-bold text-gray-300 hover:text-brand-lime hover:border-brand-lime transition-all duration-300 bg-white/5 hover:bg-white/10 shadow-inner"
           >
-            Kembali ke Atas
+            Back to Top
             <ArrowUp className="ml-1.5 w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform" />
           </button>
         </div>

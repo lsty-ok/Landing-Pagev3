@@ -1,4 +1,4 @@
-import { ArrowRight, Download, Laptop, Smartphone } from 'lucide-react'
+import { ArrowRight, Download, Laptop, Smartphone, Rocket } from 'lucide-react'
 
 export default function CtaSection() {
   return (
@@ -32,35 +32,36 @@ export default function CtaSection() {
 
         {/* Text Content */}
         <div className="max-w-3xl mx-auto space-y-8">
-          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-lime/10 border border-brand-lime-dark/30 text-brand-lime text-xs font-bold uppercase tracking-wider mb-2">
-            🚀 SEGERA HADIR DI SMARTPHONE ANDA
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-lime/10 border border-brand-lime-dark/30 text-brand-lime text-xs font-bold uppercase tracking-wider mb-2">
+            <Rocket className="w-3.5 h-3.5 text-brand-lime animate-bounce" style={{ animationDuration: '3s' }} />
+            COMING SOON TO YOUR SMARTPHONE
           </div>
           
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight font-jakarta">
-            Siap Mengubah Cara <br />
+            Ready to Transform How <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime via-white to-brand-blue">
-              Mengelola Uang Sakumu?
+              You Manage Your Allowance?
             </span>
           </h2>
           
           <p className="text-gray-300 text-base sm:text-lg lg:text-xl font-light leading-relaxed max-w-2xl mx-auto">
-            Bergabunglah dengan ribuan mahasiswa lainnya yang telah beralih ke pengelolaan finansial pintar, cepat, dan elegan tanpa ribet bersama BudJet.
+            Join thousands of students who have upgraded to a smarter, faster, and stress-free financial life with BudJet.
           </p>
 
           {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <button className="group bg-brand-lime text-brand-slate hover:bg-brand-lime-dark text-base sm:text-lg font-extrabold px-10 py-4.5 rounded-full shadow-2xl hover:shadow-brand-lime/20 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 w-full sm:w-auto flex items-center justify-center">
-              Mulai Sekarang - Gratis
+              Start Now - It's Free
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </button>
             <button className="inline-flex items-center justify-center px-10 py-4.5 bg-white/5 text-white hover:bg-white/10 border border-white/10 rounded-full font-bold text-base sm:text-lg tracking-tight transition-all duration-300 w-full sm:w-auto">
-              Unduh Versi Beta (TestFlight)
+              Download Beta (TestFlight)
               <Download className="ml-2 w-4 h-4" />
             </button>
           </div>
 
           <p className="text-xs text-gray-500 font-medium">
-            Tersedia untuk Android &amp; iOS. Tidak memerlukan kartu kredit, 100% aman untuk mahasiswa.
+            Available for Android &amp; iOS. No credit card required, 100% secure for students.
           </p>
         </div>
 

@@ -250,7 +250,7 @@ export default function FeaturesSection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: 'top 35%',
+          start: 'top 75%', // Dimulai jauh lebih awal agar Baris 1 aktif saat sepenuhnya terlihat di tengah layar!
           end: 'bottom 85%',
           scrub: 1.2,
           markers: false,
@@ -529,14 +529,15 @@ export default function FeaturesSection() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-24 md:mb-32">
-          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-lime/10 border border-brand-lime/20 text-brand-lime text-xs font-bold uppercase tracking-wider mb-6">
-            ✨ Fitur Unggulan
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-lime/10 border border-brand-lime/20 text-brand-lime text-xs font-bold uppercase tracking-wider mb-6">
+            <Sparkles className="w-3.5 h-3.5 text-brand-lime animate-pulse" />
+            Key Features
           </div>
           <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-6 font-jakarta">
-            Atur Keuanganmu Tanpa Ribet
+            Manage Your Money Stress-Free
           </h2>
           <p className="text-slate-400 text-lg sm:text-xl font-light leading-relaxed">
-            Dirancang khusus untuk mendukung mobilitas mahasiswa. Nikmati kemudahan pencatatan, analisis mendalam, dan asisten suara cerdas.
+            Specially tailored for dynamic student life. Enjoy automated entry, smart insights, and cutting-edge voice intelligence.
           </p>
         </div>
 
@@ -723,15 +724,15 @@ export default function FeaturesSection() {
                   <div className="w-9 h-9 bg-brand-lime/10 rounded-xl flex items-center justify-center text-brand-lime font-bold border border-brand-lime/20 shadow-sm">
                     <Sparkles className="w-4 h-4" />
                   </div>
-                  <span className="text-[10px] font-extrabold text-brand-lime tracking-widest uppercase">OTOMATISASI REAL-TIME</span>
+                  <span className="text-[10px] font-extrabold text-brand-lime tracking-widest uppercase">REAL-TIME AUTOMATION</span>
                 </div>
                 
                 <h3 className="card-animate-el text-2xl sm:text-3xl font-extrabold text-white mb-4 leading-tight font-jakarta">
-                  Anggaran Pintar Harian
+                  Daily Smart Budgeting
                 </h3>
                 
                 <p className="card-animate-el text-slate-400 text-sm sm:text-base leading-relaxed font-light mb-2">
-                  Lupakan pencatatan manual yang membosankan. Biarkan AI BudJet menyusun anggaran harianmu secara otomatis agar keuangan tetap aman.
+                  Forget tedious manual logging. Let BudJet AI draft your dynamic daily budget limits automatically to keep your spending perfectly safe.
                 </p>
               </div>
 
@@ -742,7 +743,7 @@ export default function FeaturesSection() {
               >
                 <div className="pt-4 border-t border-white/5 mt-4">
                   <p className="text-slate-300 text-sm leading-relaxed mb-6 font-light">
-                    BudJet secara cerdas menganalisis kebiasaan belanjamu dan menyusun batas pengeluaran harian yang realistis. Kamu tidak perlu lagi khawatir kehabisan uang saku di akhir bulan karena asisten AI kami selalu menjaga dompetmu tetap aman.
+                    BudJet intelligently analyzes your unique spending habits to construct highly realistic, adaptive daily spending targets. You will never have to worry about running out of allowance before month-end again.
                   </p>
 
                   <ul className="space-y-3.5 mb-2">
@@ -750,13 +751,13 @@ export default function FeaturesSection() {
                       <div className="w-5 h-5 rounded-full bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-lime/30">
                         <Check className="w-2.5 h-2.5 stroke-[3]" />
                       </div>
-                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Kategorisasi otomatis berbasis AI (Makanan, Kos, Buku, Kopi).</span>
+                      <span className="text-slate-300 text-xs sm:text-sm font-medium">AI-powered smart categorization (Food, Housing, Books, Coffee).</span>
                     </li>
                     <li className="flex items-start">
                       <div className="w-5 h-5 rounded-full bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-lime/30">
                         <Check className="w-2.5 h-2.5 stroke-[3]" />
                       </div>
-                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Notifikasi instan jika Anda melewati batas limit harian.</span>
+                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Instant warning notifications as you approach your daily cap.</span>
                     </li>
                   </ul>
                 </div>
@@ -767,7 +768,7 @@ export default function FeaturesSection() {
                 onClick={() => toggleCard(1)}
                 className="card-animate-el mt-6 w-full px-5 py-3 rounded-xl border border-white/10 text-xs font-semibold uppercase tracking-wider bg-white/5 text-brand-lime hover:border-brand-lime/30 hover:bg-brand-lime/5 hover:shadow-[0_0_20px_rgba(212,232,102,0.12)] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
               >
-                {expanded[1] ? "Tutup Deskripsi ↑" : "Pelajari Lebih Lanjut ↴"}
+                {expanded[1] ? "Collapse Details ↑" : "Learn More ↴"}
               </button>
             </div>
           </div>
@@ -816,15 +817,15 @@ export default function FeaturesSection() {
                   <div className="w-9 h-9 bg-brand-blue/10 rounded-xl flex items-center justify-center text-brand-blue font-bold border border-brand-blue/20 shadow-sm">
                     <Mic className="w-4 h-4" />
                   </div>
-                  <span className="text-[10px] font-extrabold text-brand-blue tracking-widest uppercase">ASISTEN AUDIO CERDAS</span>
+                  <span className="text-[10px] font-extrabold text-brand-blue tracking-widest uppercase">INTELLIGENT AUDIO ASSISTANT</span>
                 </div>
                 
                 <h3 className="card-animate-el text-2xl sm:text-3xl font-extrabold text-white mb-4 leading-tight font-jakarta">
-                  Asisten Suara Instan
+                  Instant Voice Logging
                 </h3>
                 
                 <p className="card-animate-el text-slate-400 text-sm sm:text-base leading-relaxed font-light mb-2">
-                  Capek mengetik pengeluaran setiap waktu? Cukup ucapkan nominal belanjaanmu dan asisten suara pintar kami akan mencatatnya otomatis.
+                  Tired of manual typing? Simply tap the microphone, speak your purchase naturally, and let our voice AI do all the logging for you.
                 </p>
               </div>
 
@@ -835,7 +836,7 @@ export default function FeaturesSection() {
               >
                 <div className="pt-4 border-t border-white/5 mt-4">
                   <p className="text-slate-300 text-sm leading-relaxed mb-6 font-light">
-                    Ditenagai oleh teknologi Speech-to-Finance generasi terbaru, asisten suara BudJet memahami nominal, nama barang, bahkan dialek kasual sehari-hari. Cukup tekan tombol suara dan katakan 'Beli kopi 15 ribu tadi pagi'—dan selesai!
+                    Powered by next-gen Speech-to-Finance technology, BudJet understands slang, multiple currencies, and colloquial student phrasing. Speak naturally like 'Bought an iced latte for twenty-five k'—and watch it save.
                   </p>
 
                   <ul className="space-y-3.5 mb-2">
@@ -843,13 +844,13 @@ export default function FeaturesSection() {
                       <div className="w-5 h-5 rounded-full bg-brand-blue/20 text-brand-blue flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-blue/30">
                         <Check className="w-2.5 h-2.5 stroke-[3]" />
                       </div>
-                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Akurasi tinggi mengenal dialek dan ungkapan kasual sehari-hari.</span>
+                      <span className="text-slate-300 text-xs sm:text-sm font-medium">High accuracy parsing for casual phrasing and natural dialects.</span>
                     </li>
                     <li className="flex items-start">
                       <div className="w-5 h-5 rounded-full bg-brand-blue/20 text-brand-blue flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-blue/30">
                         <Check className="w-2.5 h-2.5 stroke-[3]" />
                       </div>
-                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Konversi text-to-finance dalam waktu kurang dari 1 detik.</span>
+                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Lightning-fast text-to-finance conversion in under 1 second.</span>
                     </li>
                   </ul>
                 </div>
@@ -860,7 +861,7 @@ export default function FeaturesSection() {
                 onClick={() => toggleCard(2)}
                 className="card-animate-el mt-6 w-full px-5 py-3 rounded-xl border border-white/10 text-xs font-semibold uppercase tracking-wider bg-white/5 text-brand-blue hover:border-brand-blue/30 hover:bg-brand-blue/5 hover:shadow-[0_0_20px_rgba(96,165,250,0.12)] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
               >
-                {expanded[2] ? "Tutup Deskripsi ↑" : "Pelajari Lebih Lanjut ↴"}
+                {expanded[2] ? "Collapse Details ↑" : "Learn More ↴"}
               </button>
             </div>
           </div>
@@ -885,15 +886,15 @@ export default function FeaturesSection() {
                   <div className="w-9 h-9 bg-brand-lime/10 rounded-xl flex items-center justify-center text-brand-lime font-bold border border-brand-lime/20 shadow-sm">
                     <FileSpreadsheet className="w-4 h-4" />
                   </div>
-                  <span className="text-[10px] font-extrabold text-brand-lime tracking-widest uppercase">EKSPOR EKSEKUTIF</span>
+                  <span className="text-[10px] font-extrabold text-brand-lime tracking-widest uppercase">EXECUTIVE EXPORTS</span>
                 </div>
                 
                 <h3 className="card-animate-el text-2xl sm:text-3xl font-extrabold text-white mb-4 leading-tight font-jakarta">
-                  Laporan Bulanan PDF &amp; Excel
+                  PDF &amp; Excel Exports
                 </h3>
                 
                 <p className="card-animate-el text-slate-400 text-sm sm:text-base leading-relaxed font-light mb-2">
-                  Ekspor seluruh rekap pengeluaran dan pemasukan bulanan Anda menjadi berkas PDF &amp; spreadsheet Excel rapi dalam satu klik.
+                  Generate beautiful monthly spending summaries and detailed Excel sheets to prove transfers or claim scholarships instantly.
                 </p>
               </div>
 
@@ -904,7 +905,7 @@ export default function FeaturesSection() {
               >
                 <div className="pt-4 border-t border-white/5 mt-4">
                   <p className="text-slate-300 text-sm leading-relaxed mb-6 font-light">
-                    Membuat laporan bulanan untuk orang tua atau pengajuan beasiswa kini menjadi sangat mudah. BudJet menyusun grafik visual interaktif yang cantik dan profesional, siap dikirim langsung melalui WhatsApp atau Email.
+                    Sending monthly reports to parents or scholarship bodies has never been simpler. BudJet formats highly visual interactive charts, ready to download and share over any messenger or email.
                   </p>
 
                   <ul className="space-y-3.5 mb-2">
@@ -912,13 +913,13 @@ export default function FeaturesSection() {
                       <div className="w-5 h-5 rounded-full bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-lime/30">
                         <Check className="w-2.5 h-2.5 stroke-[3]" />
                       </div>
-                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Desain grafik interaktif yang mudah dipahami orang tua.</span>
+                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Visual interactive chart designs that are simple for parents to read.</span>
                     </li>
                     <li className="flex items-start">
                       <div className="w-5 h-5 rounded-full bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0 mr-3 mt-1 border border-brand-lime/30">
                         <Check className="w-2.5 h-2.5 stroke-[3]" />
                       </div>
-                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Ekspor langsung terintegrasi ke email, WhatsApp, atau Drive.</span>
+                      <span className="text-slate-300 text-xs sm:text-sm font-medium">Direct exports seamlessly integrated with WhatsApp, Email, or Drive.</span>
                     </li>
                   </ul>
                 </div>
@@ -929,7 +930,7 @@ export default function FeaturesSection() {
                 onClick={() => toggleCard(3)}
                 className="card-animate-el mt-6 w-full px-5 py-3 rounded-xl border border-white/10 text-xs font-semibold uppercase tracking-wider bg-white/5 text-brand-lime hover:border-brand-lime/30 hover:bg-brand-lime/5 hover:shadow-[0_0_20px_rgba(212,232,102,0.12)] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
               >
-                {expanded[3] ? "Tutup Deskripsi ↑" : "Pelajari Lebih Lanjut ↴"}
+                {expanded[3] ? "Collapse Details ↑" : "Learn More ↴"}
               </button>
             </div>
           </div>
