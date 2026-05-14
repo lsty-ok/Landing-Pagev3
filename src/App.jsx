@@ -7,6 +7,7 @@ import CinematicLoader from './components/CinematicLoader'
 import FloatingNav from './components/FloatingNav'
 import HeroSection from './components/HeroSection'
 import FeaturesSection from './components/FeaturesSection'
+import SimulatorSection from './components/SimulatorSection'
 import QuoteSection from './components/QuoteSection'
 import TestimonialSection from './components/TestimonialSection'
 import FaqSection from './components/FaqSection'
@@ -82,6 +83,7 @@ export default function App() {
       <div id="hero-trigger" className="uncover-wrapper relative z-20 bg-brand-bg shadow-2xl">
         <HeroSection />
         <FeaturesSection />
+        <SimulatorSection />
         <QuoteSection />
         <CtaSection />
         <TestimonialSection />

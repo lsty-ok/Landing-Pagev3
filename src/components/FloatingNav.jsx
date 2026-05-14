@@ -64,6 +64,7 @@ export default function FloatingNav() {
   const navItems = [
     { label: 'Home', href: '#home' },
     { label: 'Features', href: '#fitur' },
+    { label: 'Simulator', href: '#simulator' },
     { label: 'Reviews', href: '#ulasan' },
     { label: 'FAQ', href: '#faq' },
   ]
@@ -124,17 +125,11 @@ export default function FloatingNav() {
 
           <div className="hidden md:flex items-center space-x-5">
             <a
-              href="#login"
-              className="text-xs font-bold text-brand-text-muted hover:text-brand-slate transition-colors duration-300 select-none"
-            >
-              Log In
-            </a>
-            <a
               href="#cta"
               onClick={(e) => scrollToSection(e, '#cta')}
-              className="inline-flex items-center justify-center px-5 py-2 bg-brand-lime text-brand-slate hover:bg-brand-lime-dark rounded-full font-bold text-xs tracking-tight shadow-sm hover:shadow-[0_4px_15px_rgba(212,232,102,0.3)] hover:-translate-y-[1px] active:translate-y-0 transition-all duration-300 group select-none"
+              className="inline-flex items-center justify-center px-5 py-2 bg-brand-lime text-brand-slate hover:bg-brand-lime-dark rounded-full font-bold text-xs tracking-tight shadow-sm hover:shadow-[0_4px_15px_rgba(212,232,102,0.3)] hover:-translate-y-[1px] active:translate-y-0 transition-all duration-300 group select-none cursor-pointer"
             >
-              Sign Up
+              Download
               <ArrowRight className="ml-1.5 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" />
             </a>
           </div>
@@ -143,7 +138,7 @@ export default function FloatingNav() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-brand-slate hover:text-brand-text-muted focus:outline-none transition-colors duration-300"
+              className="p-2 text-brand-slate hover:text-brand-text-muted focus:outline-none transition-colors duration-300 cursor-pointer"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -173,21 +168,14 @@ export default function FloatingNav() {
           <div className="h-px bg-slate-900/5 my-1"></div>
           <div className="flex flex-col space-y-3 pt-1">
             <a
-              href="#login"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-center py-2 text-sm font-semibold text-brand-slate hover:text-brand-text-muted transition-colors"
-            >
-              Log In
-            </a>
-            <a
               href="#cta"
               onClick={(e) => {
                 setMobileMenuOpen(false)
                 scrollToSection(e, '#cta')
               }}
-              className="inline-flex items-center justify-center py-2.5 bg-brand-lime text-brand-slate hover:bg-brand-lime-dark rounded-full font-bold text-sm tracking-tight shadow-sm"
+              className="inline-flex items-center justify-center py-2.5 bg-brand-lime text-brand-slate hover:bg-brand-lime-dark rounded-full font-bold text-sm tracking-tight shadow-sm cursor-pointer"
             >
-              Sign Up Now
+              Download Now
               <ArrowRight className="ml-1.5 w-4 h-4" />
             </a>
           </div>

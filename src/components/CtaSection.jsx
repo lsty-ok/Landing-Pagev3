@@ -50,14 +50,15 @@ export default function CtaSection() {
 
           {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <button className="group bg-brand-lime text-brand-slate hover:bg-brand-lime-dark text-base sm:text-lg font-extrabold px-10 py-4.5 rounded-full shadow-2xl hover:shadow-brand-lime/20 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 w-full sm:w-auto flex items-center justify-center">
-              Start Now - It's Free
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </button>
-            <button className="inline-flex items-center justify-center px-10 py-4.5 bg-white/5 text-white hover:bg-white/10 border border-white/10 rounded-full font-bold text-base sm:text-lg tracking-tight transition-all duration-300 w-full sm:w-auto">
-              Download Beta (TestFlight)
-              <Download className="ml-2 w-4 h-4" />
-            </button>
+            <a 
+              href="https://play.google.com/store/apps/details?id=com.budjet.app" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group bg-brand-lime text-brand-slate hover:bg-brand-lime-dark text-base sm:text-lg font-extrabold px-10 py-4.5 rounded-full shadow-2xl hover:shadow-brand-lime/20 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 w-full sm:w-auto flex items-center justify-center cursor-pointer"
+            >
+              <Download className="mr-2.5 w-5 h-5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+              Download APK
+            </a>
           </div>
 
           <p className="text-xs text-gray-500 font-medium">
