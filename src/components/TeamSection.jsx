@@ -1,13 +1,21 @@
 import { Users } from 'lucide-react'
 
+import SatrioImg from '../assets/People Behind the App/Satrio.JPG';
+import RianImg from '../assets/People Behind the App/Rian.JPG';
+import AditImg from '../assets/People Behind the App/Adit.JPG';
+import AmarImg from '../assets/People Behind the App/Amar.JPG';
+import RestyImg from '../assets/People Behind the App/Resty.JPG';
+import FarkiImg from '../assets/People Behind the App/Farki.JPG';
+import AbdulImg from '../assets/People Behind the App/Abdul.JPG';
+
 const teamMembers = [
-  { id: '3124500001', name: 'Satrio Faiz Alfarizi', role: 'D3 IT A', icon: '🦊' },
-  { id: '3124500002', name: 'Muhammad Riansetyo Rudiyanto', role: 'D3 IT A', icon: '🦁' },
-  { id: '3124500013', name: 'Made Bagus Aditya Putra', role: 'D3 IT A', icon: '🐯' },
-  { id: '3124500019', name: 'Shidqi Nafis Amar Nuwiancety', role: 'D3 IT A', icon: '🐼' },
-  { id: '3124500021', name: 'Resty Setya Indrayani', role: 'D3 IT A', icon: '🐱' },
-  { id: '3124500026', name: 'Lalu Moh Hisyam Farki', role: 'D3 IT A', icon: '🐺' },
-  { id: '3124500029', name: 'Abdul Ghoni Al Muridi', role: 'D3 IT A', icon: '🐻' },
+  { id: '3124500001', name: 'Satrio Faiz Alfarizi', role: 'D3 IT A', image: SatrioImg },
+  { id: '3124500002', name: 'Muhammad Riansetyo Rudiyanto', role: 'D3 IT A', image: RianImg },
+  { id: '3124500013', name: 'Made Bagus Aditya Putra', role: 'D3 IT A', image: AditImg },
+  { id: '3124500019', name: 'Shidqi Nafis Amar Nuwiancety', role: 'D3 IT A', image: AmarImg },
+  { id: '3124500021', name: 'Resty Setya Indrayani', role: 'D3 IT A', image: RestyImg },
+  { id: '3124500026', name: 'Lalu Moh Hisyam Farki', role: 'D3 IT A', image: FarkiImg },
+  { id: '3124500029', name: 'Abdul Ghoni Al Muridi', role: 'D3 IT A', image: AbdulImg },
 ]
 
 export default function TeamSection() {
@@ -44,31 +52,33 @@ export default function TeamSection() {
               <div className="absolute inset-0 bg-gradient-to-b from-brand-lime/20 to-brand-blue/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10"></div>
               
               {/* Card Glassmorphism */}
-              <div className="relative bg-slate-800/40 backdrop-blur-md border border-white/10 hover:border-brand-lime/30 rounded-3xl p-8 text-center transform transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(204,255,0,0.15)] overflow-hidden h-full flex flex-col items-center">
+              <div className="relative bg-slate-800/40 backdrop-blur-md border border-white/10 hover:border-brand-lime/30 rounded-3xl p-0 text-center transform transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(204,255,0,0.15)] overflow-hidden h-full flex flex-col">
                 
                 {/* Top glare effect */}
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
 
-                {/* Avatar with glowing ring */}
-                <div className="relative w-24 h-24 mx-auto mb-6">
-                  <div className="absolute inset-0 bg-brand-lime/20 rounded-full animate-pulse blur-md group-hover:bg-brand-lime/50 transition-colors duration-500"></div>
-                  <div className="relative w-full h-full bg-gradient-to-br from-slate-700 to-slate-900 border border-white/10 rounded-full flex items-center justify-center text-4xl shadow-xl group-hover:scale-110 group-hover:border-brand-lime/50 transition-all duration-500">
-                    {member.icon}
+                {/* Avatar Full Width */}
+                <div className="relative w-full h-64 sm:h-72 shrink-0 border-b border-white/5">
+                  <div className="absolute inset-0 bg-brand-lime/20 animate-pulse blur-md group-hover:bg-brand-lime/40 transition-colors duration-500"></div>
+                  <div className="relative w-full h-full overflow-hidden">
+                    <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" />
                   </div>
                 </div>
                 
                 {/* Text Content */}
-                <h3 className="text-lg font-bold text-white mb-2 tracking-tight leading-snug group-hover:text-brand-lime transition-colors duration-300">
-                  {member.name}
-                </h3>
-                
-                <div className="mt-auto pt-4 flex flex-col items-center gap-3">
-                  <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest">{member.role}</p>
+                <div className="p-6 flex flex-col items-center flex-grow bg-slate-900/50">
+                  <h3 className="text-lg font-bold text-white mb-2 tracking-tight leading-snug group-hover:text-brand-lime transition-colors duration-300">
+                    {member.name}
+                  </h3>
                   
-                  {/* Styled ID Badge */}
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-white/5 group-hover:bg-black/60 group-hover:border-white/10 transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-lime animate-pulse"></span>
-                    <p className="text-gray-300 text-xs font-mono font-medium tracking-wider">{member.id}</p>
+                  <div className="mt-auto pt-2 flex flex-col items-center gap-3">
+                    <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest">{member.role}</p>
+                    
+                    {/* Styled ID Badge */}
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-white/5 group-hover:bg-black/60 group-hover:border-white/10 transition-colors">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-lime animate-pulse"></span>
+                      <p className="text-gray-300 text-xs font-mono font-medium tracking-wider">{member.id}</p>
+                    </div>
                   </div>
                 </div>
                 
