@@ -39,7 +39,7 @@ export default function CtaSection() {
           
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight font-jakarta">
             Ready to Transform How <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime via-white to-brand-blue">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime to-white">
               You Manage Your Allowance?
             </span>
           </h2>
@@ -62,7 +62,7 @@ export default function CtaSection() {
           </div>
 
           <p className="text-xs text-gray-500 font-medium">
-            Available for Android &amp; iOS. No credit card required, 100% secure for students.
+            Available exclusively for Android. No credit card required, 100% secure for students.
           </p>
         </div>
 

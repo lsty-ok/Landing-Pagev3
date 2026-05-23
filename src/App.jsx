@@ -11,6 +11,7 @@ import SimulatorSection from './components/SimulatorSection'
 import QuoteSection from './components/QuoteSection'
 import TestimonialSection from './components/TestimonialSection'
 import FaqSection from './components/FaqSection'
+import TeamSection from './components/TeamSection'
 import CtaSection from './components/CtaSection'
 import Footer from './components/Footer'
 
@@ -65,6 +66,12 @@ export default function App() {
     }
   }, [])
 
+  useEffect(() => {
+    if (!showLoader && window.lenis) {
+      window.lenis.start()
+    }
+  }, [showLoader])
+
   return (
     <div className="relative min-h-screen text-brand-slate overflow-x-clip antialiased bg-brand-bg select-none">
       {/* Cinematic Loader overlay */}
@@ -87,6 +94,7 @@ export default function App() {
         <QuoteSection />
         <CtaSection />
         <TestimonialSection />
+        <TeamSection />
         <FaqSection />
       </div>
 

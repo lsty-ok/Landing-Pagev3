@@ -7,62 +7,54 @@ gsap.registerPlugin(ScrollTrigger)
 
 const TESTIMONIALS_COL_1 = [
   {
-    quote: "BudJet helps me track where my monthly allowance goes automatically. Incredibly helpful!",
+    quote: "Incredibly helpful for students on a tight budget. The daily allowance algorithm ensures I never overspend again!",
     name: "Farhan Ardiansyah",
-    role: "Information Systems Student, UI",
-    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&h=150&q=80",
+    role: "Information Systems Student, PENS",
     rating: 5,
   },
   {
-    quote: "The Voice Input feature is amazing! I just speak after buying lunch and it's instantly logged.",
+    quote: "I absolutely love the Voice Input feature! I just say 'bought lunch for twenty thousand' and it's logged automatically. Brilliant.",
     name: "Siti Rahma",
-    role: "English Literature Student, Unpad",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80",
+    role: "English Literature Student, Unesa",
     rating: 5,
   },
   {
-    quote: "I used to panic when my balance ran low at month-end. Now I can set a realistic daily limit.",
+    quote: "Reporting my expenses to my parents is so easy now. Just export the history into a CSV file, and I'm done!",
     name: "Bagus Prasetyo",
     role: "Mechanical Engineering Student, ITS",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
   },
   {
-    quote: "The UI design is gorgeous, clean, and ultra-modern. I love checking it every day.",
+    quote: "The UI is very clean, the dark mode looks cool, and it's super easy to understand. Quick login with Google is a huge plus.",
     name: "Nabila Putri",
     role: "Visual Communication Design Student, ITB",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
   },
 ]
 
 const TESTIMONIALS_COL_2 = [
   {
-    quote: "Incredibly useful to export monthly spreadsheet (.xlsx) reports as proof of transfer for my parents.",
+    quote: "The perfect finance app for students! It's free, has no ads, and truly helps manage my monthly allowance.",
     name: "Rian Hidayat",
     role: "Finance Management Student, UGM",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
   },
   {
-    quote: "The best finance app that is perfectly student-friendly. Free and entirely ad-free!",
+    quote: "The Smart Budgeting feature is top-notch. I now know my exact safe daily limit so I can still afford a nice meal at the end of the month.",
     name: "Amanda Lestari",
     role: "Medical Student, Airlangga University",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
   },
   {
-    quote: "I can finally save up to buy a new laptop, thanks to custom category jars in BudJet.",
+    quote: "Tried many expense trackers, but BudJet fits best. It's simple, lightweight, cloud-synced, and lightning fast for logging.",
     name: "Dwi Cahyo",
     role: "Computer Science Student, Undip",
-    avatar: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
   },
   {
-    quote: "The AI assistant gives incredibly practical saving tips for dorm life. 5-stars!",
+    quote: "A true lifesaver for dorm students! From constantly running out of money mid-month to being financially disciplined with BudJet.",
     name: "Putu Gede",
     role: "Accounting Student, Udayana University",
-    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=150&h=150&q=80",
     rating: 5,
   },
 ]
@@ -214,7 +206,7 @@ export default function TestimonialSection() {
               {[1, 2, 3, 4].map((num) => (
                 <img
                   key={num}
-                  src={`https://images.unsplash.com/photo-${1500000000000 + num * 100000}?auto=format&fit=crop&w=80&h=80&q=80`}
+                  src={`https://i.pravatar.cc/80?img=${num + 10}`}
                   alt="Active Student user profile"
                   className="w-9 h-9 rounded-full border-2 border-brand-slate object-cover"
                 />
@@ -224,7 +216,7 @@ export default function TestimonialSection() {
               <div className="font-extrabold text-white flex items-center gap-1">
                 ⭐⭐⭐⭐⭐ <span className="font-bold text-xs ml-1 bg-brand-lime text-brand-slate px-2 py-0.5 rounded-md">4.9/5</span>
               </div>
-              <p className="text-gray-400 text-xs font-medium mt-0.5">Average 4.9/5 rating on Play Store &amp; App Store</p>
+              <p className="text-gray-400 text-xs font-medium mt-0.5">Average 4.9/5 rating on Google Play Store</p>
             </div>
           </div>
         </div>
