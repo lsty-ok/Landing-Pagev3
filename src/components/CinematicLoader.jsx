@@ -83,7 +83,7 @@ export default function CinematicLoader({ onComplete }) {
         {/* Transparent Lottie Animation Wrapper */}
         <div 
           ref={lottieRef} 
-          className="w-72 h-72 md:w-[400px] md:h-[400px] filter drop-shadow-[0_0_50px_rgba(212,232,102,0.12)] opacity-95 transition-opacity duration-300"
+          className="w-72 h-72 md:w-[400px] md:h-[400px] filter drop-shadow-[0_0_50px_rgba(212,232,102,0.12)] opacity-95 transition-opacity duration-300 scale-x-[-1]"
         ></div>
       </div>
 
