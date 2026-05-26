@@ -7,9 +7,9 @@ import { Check, Sparkles, Zap, PieChart } from 'lucide-react'
 
 // Mockup image imports & 3D Interactive Phone Showcase
 import InteractivePhoneShowcase from './InteractivePhoneShowcase'
-import dailySmartImg from '../assets/images/Mockup Fitur daily smart.svg'
-import asistenPintarImg from '../assets/images/Mockup-fitur Asisten Catatan Pintar.svg'
-import laporanBulananImg from '../assets/images/Mockup-fitur laporan Bulanan.svg'
+import dailySmartImg from '../assets/images/Mockup-fitur Daily Smart.png'
+import asistenPintarImg from '../assets/images/Mockup-fitur Asisten Catatan Pintar.png'
+import laporanBulananImg from '../assets/images/Mockup-fitur laporan Bulanan.png'
 
 gsap.registerPlugin(ScrollTrigger)
 
