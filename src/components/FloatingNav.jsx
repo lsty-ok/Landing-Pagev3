@@ -99,11 +99,13 @@ export default function FloatingNav() {
             onClick={(e) => scrollToSection(e, '#home')}
             className="flex items-center space-x-2.5 group select-none"
           >
-            <img 
-              src="/logo.svg" 
-              alt="BudJet Logo" 
-              className="h-9 w-9 rounded-xl object-cover border border-slate-900/5 shadow-md group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(212,232,102,0.15)] transition-all duration-300" 
-            />
+            <div className="transition-transform duration-300 group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(212,232,102,0.15)] rounded-xl">
+              <img 
+                src="/logo.svg" 
+                alt="BudJet Logo" 
+                className="h-9 w-9 rounded-xl object-cover border border-slate-900/5 shadow-md scale-x-[-1]" 
+              />
+            </div>
             <span className="font-extrabold text-xl tracking-tight text-brand-slate">
               Bud<span className="text-brand-lime">J</span>et.
             </span>

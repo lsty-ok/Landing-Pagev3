@@ -24,7 +24,9 @@ export default function Footer() {
             {/* Brand Info */}
             <div className="md:col-span-1.5 space-y-6">
               <a href="#" className="flex items-center space-x-2.5 group w-fit">
-                <img src="/logo.svg" alt="BudJet Logo" className="w-9 h-9 rounded-xl object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="transition-transform duration-300 group-hover:scale-105 rounded-xl flex">
+                  <img src="/logo.svg" alt="BudJet Logo" className="w-9 h-9 rounded-xl object-cover scale-x-[-1]" />
+                </div>
                 <span className="font-extrabold text-2xl tracking-tight text-white group-hover:opacity-90 transition-opacity duration-300">
                   Bud<span className="text-brand-lime">J</span>et.
                 </span>
