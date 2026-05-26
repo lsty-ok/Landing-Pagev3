@@ -281,10 +281,10 @@ export default function InteractivePhoneShowcase({
       className="w-full h-full flex items-center justify-center relative overflow-visible select-none cursor-grab active:cursor-grabbing"
       style={{ perspective: '1200px' }}
     >
-      {/* 1. Glassmorphic Radial Aura Glow Behind Phone */}
+      {/* 1. Glassmorphic Radial Aura Glow Behind Phone (Hidden on mobile to avoid heavy paint!) */}
       <div
         ref={glowRef}
-        className={`absolute w-80 h-80 rounded-full blur-3xl opacity-60 mix-blend-screen transition-all duration-300 pointer-events-none ${glowColorClass}`}
+        className={`hidden md:block absolute w-80 h-80 rounded-full blur-3xl opacity-60 mix-blend-screen transition-all duration-300 pointer-events-none ${glowColorClass}`}
         style={{ transform: 'translate3d(0,0,-100px)' }}
       ></div>
 

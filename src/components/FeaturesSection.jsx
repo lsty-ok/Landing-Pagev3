@@ -521,9 +521,9 @@ export default function FeaturesSection() {
       id="fitur" 
       className="py-24 sm:py-32 bg-slate-950 text-white relative overflow-hidden"
     >
-      {/* Background radial soft glowing backdrops */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-brand-lime/5 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-brand-blue/5 rounded-full blur-[150px] pointer-events-none"></div>
+      {/* Background radial soft glowing backdrops (Hidden on mobile to save GPU!) */}
+      <div className="hidden md:block absolute top-0 left-1/4 w-[500px] h-[500px] bg-brand-lime/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="hidden md:block absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-brand-blue/5 rounded-full blur-[150px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         

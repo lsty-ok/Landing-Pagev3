@@ -102,7 +102,7 @@ export default function FloatingNav() {
             <img 
               src="/logo.svg" 
               alt="BudJet Logo" 
-              className="h-9 w-9 rounded-xl object-cover border border-slate-900/5 shadow-md group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(212,232,102,0.15)] transition-all duration-300 scale-x-[-1]" 
+              className="h-9 w-9 rounded-xl object-cover border border-slate-900/5 shadow-md group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(212,232,102,0.15)] transition-all duration-300" 
             />
             <span className="font-extrabold text-xl tracking-tight text-brand-slate">
               Bud<span className="text-brand-lime">J</span>et.
