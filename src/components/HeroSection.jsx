@@ -2,7 +2,7 @@ import { ArrowRight, ArrowDown } from 'lucide-react'
 import InteractivePhoneShowcase from './InteractivePhoneShowcase'
 
 // Import images for texture loading
-import heroMockupImg from '../assets/images/Mockup-Hero section.png'
+import heroMockupImg from '../assets/images/Mockup-Hero section.svg'
 
 // Animated Dot Wave Background component ("Animasi titik gelombang")
 function DotWaveBackground() {
