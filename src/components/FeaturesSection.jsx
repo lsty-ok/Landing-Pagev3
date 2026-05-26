@@ -44,14 +44,14 @@ export default function FeaturesSection() {
   const features = [
     {
       id: 1,
-      tag: "REAL-TIME AUTOMATION",
+      tag: "PENGELOLAAN ANGGARAN TEPAT",
       icon: <Sparkles className="w-5 h-5" />,
-      title: "Daily Smart Budgeting",
-      description: "Forget tedious manual logging. Let BudJet AI draft your dynamic daily budget limits automatically to keep your spending perfectly safe.",
+      title: "Atur Anggaran Harianmu",
+      description: "Tentukan batas pengeluaran harian dan bulanan Anda untuk tiap kategori. Sistem kami akan memperingatkan Anda ketika pengeluaran mulai mendekati batas agar dompet tetap aman.",
       bullets: [
-        "AI-powered smart categorization (Food, Housing, Books, Coffee).",
-        "Instant warning notifications as you approach your daily cap.",
-        "Adaptive calculations based on your unique spending habits."
+        "Kustomisasi kategori pengeluaran tanpa batas.",
+        "Peringatan instan saat mendekati batas anggaran harian.",
+        "Perhitungan otomatis sisa saldo harian."
       ],
       image: dailySmartImg,
       color: "#D4E866",
@@ -62,14 +62,14 @@ export default function FeaturesSection() {
     },
     {
       id: 2,
-      tag: "VOICE INTELLIGENCE",
+      tag: "CATAT CEPAT SUARA",
       icon: <Zap className="w-5 h-5" />,
-      title: "Voice-Powered Assistant",
-      description: "Just speak to your phone and let BudJet do the heavy lifting. Logging your expenses is now as easy as talking to a friend.",
+      title: "Catat Cepat via Suara",
+      description: "Tidak perlu mengetik panjang! Cukup tekan mikrofon dan sebutkan transaksi Anda. Kami akan secara otomatis memisahkan nominal angka, waktu, dan kategori dari ucapan Anda.",
       bullets: [
-        "Natural language processing understands complex inputs.",
-        "Hands-free expense tracking while on the go.",
-        "Automatic currency and amount detection."
+        "Pengenalan suara (Speech-to-Text) yang cepat dan responsif.",
+        "Deteksi otomatis nominal uang dari ucapan.",
+        "Identifikasi waktu (misal: \"kemarin\") tanpa ribet."
       ],
       image: asistenPintarImg,
       color: "#60A5FA",
@@ -80,14 +80,14 @@ export default function FeaturesSection() {
     },
     {
       id: 3,
-      tag: "SMART ANALYTICS",
+      tag: "LAPORAN VISUAL",
       icon: <PieChart className="w-5 h-5" />,
-      title: "Monthly Precision Reports",
-      description: "Get crystal clear visibility into where your money goes. Beautiful, exportable reports help you find ways to save more every month.",
+      title: "Laporan Visual & Ekspor CSV",
+      description: "Dapatkan visibilitas yang jelas ke mana perginya uang Anda setiap bulan. Tersedia laporan grafik yang indah dan fitur ekspor CSV untuk keperluan analisis lebih lanjut.",
       bullets: [
-        "Visual charts and graphs for quick comprehension.",
-        "Export to PDF or CSV for easy sharing.",
-        "Personalized saving recommendations."
+        "Grafik visual interaktif untuk kemudahan analisa.",
+        "Ekspor seluruh riwayat transaksi ke format CSV.",
+        "Pantau histori arus kas secara terstruktur."
       ],
       image: laporanBulananImg,
       color: "#D4E866",
@@ -113,13 +113,13 @@ export default function FeaturesSection() {
         <div className="text-center max-w-3xl mx-auto mb-24 md:mb-32">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-lime/10 border border-brand-lime/20 text-brand-lime text-xs font-bold uppercase tracking-wider mb-6">
             <Sparkles className="w-3.5 h-3.5 text-brand-lime" />
-            Key Features
+            Fitur Utama
           </div>
           <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-6 font-jakarta">
-            Manage Your Money Stress-Free
+            Kelola Uang Anda Tanpa Stres
           </h2>
           <p className="text-slate-400 text-lg sm:text-xl font-light leading-relaxed">
-            Specially tailored for dynamic student life. Enjoy automated entry, smart insights, and cutting-edge voice intelligence.
+            Dirancang khusus untuk gaya hidup yang dinamis. Nikmati pencatatan cepat, wawasan pengelolaan yang rapi, dan kemudahan rekam transaksi via suara.
           </p>
         </div>
 

@@ -59,15 +59,15 @@ export default function HeroSection() {
         <div className="w-full flex flex-col justify-center text-center md:text-left select-text">
           {/* Heading */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight text-brand-slate mb-6 leading-none">
-            BudJet smarter,<br />
+            Kelola Lebih Cerdas,<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-slate via-brand-slate/85 to-brand-lime-dark">
-              live better.
+              Hidup Lebih Tenang.
             </span>
           </h1>
 
           {/* Subheading */}
           <p className="text-base sm:text-lg lg:text-xl text-brand-text-muted mb-10 max-w-xl font-light leading-relaxed mx-auto md:mx-0">
-            Unlock your financial potential with ease and elegance. BudJet helps you manage your money stress-free with a touch of modern technology and seamless daily automated tracking.
+            Kelola keuangan Anda tanpa stres dengan sentuhan desain modern dan pencatatan harian yang cepat, mudah, dan aman.
           </p>
 
           {/* Download CTAs & Learn more */}
