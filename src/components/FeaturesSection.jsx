@@ -59,6 +59,7 @@ export default function FeaturesSection() {
       bgClass: "bg-brand-lime/10",
       borderClass: "border-brand-lime/20",
       reverse: false,
+      imageSizeClass: "max-w-[500px]",
     },
     {
       id: 2,
@@ -77,6 +78,7 @@ export default function FeaturesSection() {
       bgClass: "bg-brand-blue/10",
       borderClass: "border-brand-blue/20",
       reverse: true,
+      imageSizeClass: "max-w-[400px]",
     },
     {
       id: 3,
@@ -95,6 +97,7 @@ export default function FeaturesSection() {
       bgClass: "bg-brand-lime/10",
       borderClass: "border-brand-lime/20",
       reverse: false,
+      imageSizeClass: "max-w-[450px]",
     }
   ]
 
@@ -166,7 +169,7 @@ export default function FeaturesSection() {
 
               {/* Showcase Image */}
               <div className="w-full md:w-1/2 flex justify-center relative">
-                <div className="relative w-full max-w-[450px] flex items-center justify-center z-10 group">
+                <div className={`relative w-full ${feature.imageSizeClass} flex items-center justify-center z-10 group`}>
                   <div className="absolute inset-0 bg-brand-lime/10 blur-3xl opacity-0 group-hover:opacity-50 transition-opacity duration-700 rounded-full"></div>
                   <img 
                     src={feature.image} 
