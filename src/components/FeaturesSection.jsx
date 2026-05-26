@@ -164,16 +164,15 @@ export default function FeaturesSection() {
                 </ul>
               </div>
 
-              {/* Showcase Image/Phone */}
+              {/* Showcase Image */}
               <div className="w-full md:w-1/2 flex justify-center relative">
-                {/* Clean geometric backdrop instead of heavy blurs */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl transform -rotate-3 scale-105 border border-white/5"></div>
-                
-                <div className="relative w-full max-w-[350px] aspect-[4/5] rounded-3xl border border-white/10 bg-slate-900/40 p-6 flex items-center justify-center shadow-2xl z-10">
-                  <InteractivePhoneShowcase
-                    variant="single"
-                    texturePath={feature.image}
-                    themeColor={feature.color}
+                <div className="relative w-full max-w-[450px] flex items-center justify-center z-10 group">
+                  <div className="absolute inset-0 bg-brand-lime/10 blur-3xl opacity-0 group-hover:opacity-50 transition-opacity duration-700 rounded-full"></div>
+                  <img 
+                    src={feature.image} 
+                    alt={feature.title} 
+                    className="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)] transform transition-transform duration-700 hover:scale-105 hover:-translate-y-2"
+                    loading="lazy"
                   />
                 </div>
               </div>

@@ -1,5 +1,4 @@
 import { ArrowRight, ArrowDown } from 'lucide-react'
-import InteractivePhoneShowcase from './InteractivePhoneShowcase'
 
 // Import images for texture loading
 import heroMockupImg from '../assets/images/mockup-hero-section.png'
@@ -46,12 +45,16 @@ export default function HeroSection() {
           {/* Animated Tech Dot Wave Background */}
           <DotWaveBackground />
 
-          <div className="w-full h-[380px] sm:h-[450px] md:h-[580px] overflow-visible flex items-center justify-center z-10">
-            <InteractivePhoneShowcase
-              variant="hero-composite"
-              texturePath={heroMockupImg}
-              themeColor="#D4E866"
-            />
+          <div className="relative w-full max-w-[600px] md:max-w-none flex justify-center">
+            <div className="relative w-full flex items-center justify-center z-10 group animate-[float_6s_ease-in-out_infinite]">
+              <div className="absolute inset-0 bg-brand-lime/10 blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-700 rounded-full"></div>
+              <img 
+                src={heroMockupImg} 
+                alt="BudJet Hero Showcase" 
+                className="w-full h-auto max-w-[100%] md:max-w-[110%] lg:max-w-[120%] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] transform transition-transform duration-700 hover:scale-105"
+                loading="eager"
+              />
+            </div>
           </div>
         </div>
 
