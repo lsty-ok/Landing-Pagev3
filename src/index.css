@@ -24,6 +24,7 @@
   color-scheme: light;
   background-color: var(--color-brand-bg);
   color: var(--color-brand-slate);
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6, .font-jakarta {
