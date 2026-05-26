@@ -47,11 +47,15 @@ export default function FeaturesSection() {
       tag: "PENGELOLAAN ANGGARAN TEPAT",
       icon: <Sparkles className="w-5 h-5" />,
       title: "Atur Anggaran Harianmu",
-      description: "Tentukan batas pengeluaran harian dan bulanan Anda untuk tiap kategori. Sistem kami akan memperingatkan Anda ketika pengeluaran mulai mendekati batas agar dompet tetap aman.",
+      description: (
+        <span>
+          Tentukan <strong className="text-white font-bold">batas pengeluaran harian dan bulanan</strong> Anda untuk tiap kategori. Sistem kami akan <strong className="text-white font-bold">memperingatkan Anda</strong> ketika pengeluaran mulai mendekati batas agar dompet tetap aman.
+        </span>
+      ),
       bullets: [
-        "Kustomisasi kategori pengeluaran tanpa batas.",
-        "Peringatan instan saat mendekati batas anggaran harian.",
-        "Perhitungan otomatis sisa saldo harian."
+        <span>Kustomisasi <strong className="text-white font-semibold">kategori pengeluaran tanpa batas</strong>.</span>,
+        <span>Peringatan instan saat mendekati <strong className="text-white font-semibold">batas anggaran harian</strong>.</span>,
+        <span>Perhitungan otomatis <strong className="text-white font-semibold">sisa saldo harian</strong>.</span>
       ],
       image: dailySmartImg,
       color: "#D4E866",
@@ -66,11 +70,15 @@ export default function FeaturesSection() {
       tag: "CATAT CEPAT SUARA",
       icon: <Zap className="w-5 h-5" />,
       title: "Catat Cepat via Suara",
-      description: "Tidak perlu mengetik panjang! Cukup tekan mikrofon dan sebutkan transaksi Anda. Kami akan secara otomatis memisahkan nominal angka, waktu, dan kategori dari ucapan Anda.",
+      description: (
+        <span>
+          Tidak perlu mengetik panjang! Cukup <strong className="text-white font-bold">tekan mikrofon</strong> dan sebutkan transaksi Anda. Kami akan secara otomatis memisahkan <strong className="text-white font-bold">nominal angka, waktu, dan kategori</strong> dari ucapan Anda.
+        </span>
+      ),
       bullets: [
-        "Pengenalan suara (Speech-to-Text) yang cepat dan responsif.",
-        "Deteksi otomatis nominal uang dari ucapan.",
-        "Identifikasi waktu (misal: \"kemarin\") tanpa ribet."
+        <span>Pengenalan suara (<strong className="text-white font-semibold">Speech-to-Text</strong>) yang cepat dan responsif.</span>,
+        <span>Deteksi otomatis <strong className="text-white font-semibold">nominal uang</strong> dari ucapan.</span>,
+        <span>Identifikasi <strong className="text-white font-semibold">waktu</strong> (misal: "kemarin") tanpa ribet.</span>
       ],
       image: asistenPintarImg,
       color: "#60A5FA",
@@ -85,11 +93,15 @@ export default function FeaturesSection() {
       tag: "LAPORAN VISUAL",
       icon: <PieChart className="w-5 h-5" />,
       title: "Laporan Visual & Ekspor CSV",
-      description: "Dapatkan visibilitas yang jelas ke mana perginya uang Anda setiap bulan. Tersedia laporan grafik yang indah dan fitur ekspor CSV untuk keperluan analisis lebih lanjut.",
+      description: (
+        <span>
+          Dapatkan <strong className="text-white font-bold">visibilitas yang jelas</strong> ke mana perginya uang Anda setiap bulan. Tersedia <strong className="text-white font-bold">laporan grafik yang indah</strong> dan fitur <strong className="text-white font-bold">ekspor CSV</strong> untuk keperluan analisis lebih lanjut.
+        </span>
+      ),
       bullets: [
-        "Grafik visual interaktif untuk kemudahan analisa.",
-        "Ekspor seluruh riwayat transaksi ke format CSV.",
-        "Pantau histori arus kas secara terstruktur."
+        <span>Grafik <strong className="text-white font-semibold">visual interaktif</strong> untuk kemudahan analisa.</span>,
+        <span>Ekspor seluruh riwayat transaksi ke <strong className="text-white font-semibold">format CSV</strong>.</span>,
+        <span>Pantau <strong className="text-white font-semibold">histori arus kas</strong> secara terstruktur.</span>
       ],
       image: laporanBulananImg,
       color: "#D4E866",
@@ -100,6 +112,48 @@ export default function FeaturesSection() {
       imageSizeClass: "max-w-[450px]",
     }
   ]
+
+  // Beautiful Tilt Image Sub-component for interactive parallax effect
+  const TiltImage = ({ src, alt, imageSizeClass }) => {
+    const imgRef = useRef(null)
+
+    const handleMouseMove = (e) => {
+      const el = imgRef.current
+      if (!el) return
+      const rect = el.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      const xc = rect.width / 2
+      const yc = rect.height / 2
+      const rotateY = ((x - xc) / xc) * 15 // Max 15 degrees
+      const rotateX = -((y - yc) / yc) * 15 // Max 15 degrees
+
+      el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`
+    }
+
+    const handleMouseLeave = () => {
+      const el = imgRef.current
+      if (!el) return
+      el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)'
+    }
+
+    return (
+      <div 
+        className={`relative w-full ${imageSizeClass} flex items-center justify-center z-10 group cursor-pointer`}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div className="absolute inset-0 bg-brand-lime/10 blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full pointer-events-none"></div>
+        <img 
+          ref={imgRef}
+          src={src} 
+          alt={alt} 
+          className="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-transform duration-200 ease-out"
+          loading="lazy"
+        />
+      </div>
+    )
+  }
 
   return (
     <section 
@@ -169,15 +223,11 @@ export default function FeaturesSection() {
 
               {/* Showcase Image */}
               <div className="w-full md:w-1/2 flex justify-center relative">
-                <div className={`relative w-full ${feature.imageSizeClass} flex items-center justify-center z-10 group`}>
-                  <div className="absolute inset-0 bg-brand-lime/10 blur-3xl opacity-0 group-hover:opacity-50 transition-opacity duration-700 rounded-full"></div>
-                  <img 
-                    src={feature.image} 
-                    alt={feature.title} 
-                    className="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)] transform transition-transform duration-700 hover:scale-105 hover:-translate-y-2"
-                    loading="lazy"
-                  />
-                </div>
+                <TiltImage 
+                  src={feature.image} 
+                  alt={feature.title} 
+                  imageSizeClass={feature.imageSizeClass} 
+                />
               </div>
 
             </div>

@@ -14,6 +14,7 @@ export default function SimulatorSection() {
   const [newSimTxnCategory, setNewSimTxnCategory] = useState('Makanan & Minuman')
   const [newSimTxnDesc, setNewSimTxnDesc] = useState('')
   const [newSimTxnFreq, setNewSimTxnFreq] = useState('monthly')
+  const [errorMsg, setErrorMsg] = useState('')
 
   // Currency Format (IDR)
   const formatRupiah = (number) => {
@@ -29,7 +30,7 @@ export default function SimulatorSection() {
   const handleAddSimTxn = (e) => {
     e.preventDefault()
     if (!newSimTxnAmount || isNaN(newSimTxnAmount) || Number(newSimTxnAmount) <= 0) {
-      alert("Please enter a valid amount!")
+      setErrorMsg("Masukkan jumlah anggaran yang valid!")
       return
     }
     const newTxn = {
@@ -43,6 +44,7 @@ export default function SimulatorSection() {
     setNewSimTxnAmount('')
     setNewSimTxnDesc('')
     setNewSimTxnFreq('monthly')
+    setErrorMsg('')
   }
 
   // Remove Single Transaction
@@ -185,10 +187,19 @@ export default function SimulatorSection() {
                       type="number" 
                       className="w-full pl-10 pr-3 py-2.5 bg-brand-bg border border-brand-border rounded-xl text-brand-slate font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-lime transition-all"
                       value={newSimTxnAmount} 
-                      onChange={(e) => setNewSimTxnAmount(e.target.value)} 
+                      onChange={(e) => {
+                        setNewSimTxnAmount(e.target.value)
+                        if (errorMsg) setErrorMsg('')
+                      }} 
                       placeholder="Cth. 50000"
                     />
                   </div>
+                  {errorMsg && (
+                    <p className="text-xs font-bold text-red-500 mt-1 flex items-center gap-1">
+                      <AlertTriangle className="w-3.5 h-3.5" />
+                      {errorMsg}
+                    </p>
+                  )}
                 </div>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -305,6 +316,34 @@ export default function SimulatorSection() {
                 <p className="text-xs sm:text-sm leading-relaxed font-medium opacity-90">
                   {simInsights.text}
                 </p>
+              </div>
+
+              {/* High-Converting Download CTA Card */}
+              <div className="p-5 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 border border-slate-800/80 rounded-2xl shadow-lg flex flex-col sm:flex-row justify-between items-center gap-4 hover:shadow-xl transition-all duration-300">
+                <div className="space-y-1 text-center sm:text-left">
+                  <h4 className="text-white font-bold text-sm sm:text-base flex items-center gap-1.5 justify-center sm:justify-start">
+                    <Sparkles className="w-4 h-4 text-brand-lime animate-pulse" />
+                    Suka Simulasinya?
+                  </h4>
+                  <p className="text-xs text-slate-400 font-medium">
+                    Pantau pengeluaran aslimu secara otomatis dengan aplikasi BudJet sekarang!
+                  </p>
+                </div>
+                <a 
+                  href="#cta" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (window.lenis) {
+                      window.lenis.scrollTo('#cta');
+                    } else {
+                      document.querySelector('#cta')?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-lime text-brand-slate hover:bg-brand-lime-dark font-extrabold text-xs py-3 px-5 rounded-xl shadow-md transition-all duration-300 transform hover:-translate-y-0.5 whitespace-nowrap cursor-pointer"
+                >
+                  <span>Coba Aplikasi Asli</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
               </div>
 
               {/* Simulated Transactions List */}
