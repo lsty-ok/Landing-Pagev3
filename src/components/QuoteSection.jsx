@@ -11,7 +11,7 @@ export default function QuoteSection() {
   const quoteMarkLeftRef = useRef(null)
   const quoteMarkRightRef = useRef(null)
 
-  const quoteText = "A budget is telling your money where to go instead of wondering where it went."
+  const quoteText = "Anggaran adalah memberi tahu uang Anda ke mana harus pergi, daripada bertanya-tanya ke mana perginya."
   const words = quoteText.split(" ")
 
   useEffect(() => {
@@ -119,7 +119,7 @@ export default function QuoteSection() {
             John C. Maxwell
           </span>
           <span className="text-xs text-slate-400 font-medium">
-            Leadership Expert &amp; Author
+            Pakar Kepemimpinan &amp; Penulis
           </span>
         </div>
       </div>

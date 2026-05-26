@@ -31,13 +31,13 @@ export default function TeamSection() {
         <div className="text-center max-w-3xl mx-auto mb-20 space-y-5">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 border border-white/10 text-brand-lime text-xs font-bold uppercase tracking-widest mb-2 backdrop-blur-md">
             <Users className="w-4 h-4" />
-            <span>People Behind the App</span>
+            <span>Orang-Orang di Balik Aplikasi</span>
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight font-jakarta">
-            Meet Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime to-white">Development Team</span>
+            Temui Tim <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime to-white">Pengembang Kami</span>
           </h2>
           <p className="text-gray-400 text-base sm:text-lg lg:text-xl font-light leading-relaxed max-w-2xl mx-auto">
-            Behind BudJet's advanced features is a dedicated team of students building the best financial assistant for you.
+            Di balik fitur canggih BudJet terdapat tim mahasiswa yang berdedikasi membangun asisten keuangan terbaik untuk Anda.
           </p>
         </div>
 

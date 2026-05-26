@@ -32,7 +32,7 @@ export default function Footer() {
                 </span>
               </a>
               <p className="text-gray-400 text-sm font-light leading-relaxed max-w-sm">
-                Helping students manage daily finances smartly, quickly, and automatically using AI assistance &amp; voice input technologies.
+                Membantu mahasiswa mengelola keuangan harian dengan cerdas, cepat, dan otomatis.
               </p>
               {/* Social media badges */}
               <div className="flex space-x-4 pt-2">
@@ -63,19 +63,19 @@ export default function Footer() {
 
             {/* Column 1: Links */}
             <div className="space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-brand-lime">Navigation</h4>
+              <h4 className="text-xs font-bold uppercase tracking-widest text-brand-lime">Navigasi</h4>
               <ul className="space-y-2.5 text-sm text-gray-400 font-light">
                 <li>
-                  <a href="#home" className="hover:text-brand-lime transition-colors">Home</a>
+                  <a href="#home" className="hover:text-brand-lime transition-colors">Beranda</a>
                 </li>
                 <li>
-                  <a href="#fitur" className="hover:text-brand-lime transition-colors">Key Features</a>
+                  <a href="#fitur" className="hover:text-brand-lime transition-colors">Fitur Utama</a>
                 </li>
                 <li>
-                  <a href="#simulator" className="hover:text-brand-lime transition-colors">Budget Simulator</a>
+                  <a href="#simulator" className="hover:text-brand-lime transition-colors">Simulator Anggaran</a>
                 </li>
                 <li>
-                  <a href="#ulasan" className="hover:text-brand-lime transition-colors">Student Reviews</a>
+                  <a href="#ulasan" className="hover:text-brand-lime transition-colors">Ulasan Mahasiswa</a>
                 </li>
                 <li>
                   <a href="#faq" className="hover:text-brand-lime transition-colors">FAQ</a>
@@ -92,7 +92,7 @@ export default function Footer() {
                     onClick={() => setLegalModal('privacy')} 
                     className="hover:text-brand-blue transition-colors text-left cursor-pointer"
                   >
-                    Privacy Policy
+                    Kebijakan Privasi
                   </button>
                 </li>
                 <li>
@@ -100,7 +100,7 @@ export default function Footer() {
                     onClick={() => setLegalModal('terms')} 
                     className="hover:text-brand-blue transition-colors text-left cursor-pointer"
                   >
-                    Terms &amp; Conditions
+                    Syarat &amp; Ketentuan
                   </button>
                 </li>
               </ul>
@@ -108,7 +108,7 @@ export default function Footer() {
 
             {/* Column 3: Contact */}
             <div className="space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-gray-300">Contact</h4>
+              <h4 className="text-xs font-bold uppercase tracking-widest text-gray-300">Kontak</h4>
               <ul className="space-y-2.5 text-sm text-gray-400 font-light">
                 <li className="flex items-center">
                   <span className="text-brand-lime mr-2 font-bold">•</span>
@@ -129,7 +129,7 @@ export default function Footer() {
           {/* Bottom Section */}
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-xs text-gray-500 font-light">
-              &copy; {new Date().getFullYear()} BudJet Finance. All Rights Reserved.
+              &copy; {new Date().getFullYear()} BudJet Finance. Hak Cipta Dilindungi.
             </p>
 
             {/* Scroll to Top Trigger */}
@@ -137,7 +137,7 @@ export default function Footer() {
               onClick={scrollToTop}
               className="group inline-flex items-center justify-center px-4 py-2 border border-white/10 rounded-full text-xs font-bold text-gray-300 hover:text-brand-lime hover:border-brand-lime transition-all duration-300 bg-white/5 hover:bg-white/10 shadow-inner cursor-pointer"
             >
-              Back to Top
+              Kembali ke Atas
               <ArrowUp className="ml-1.5 w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform" />
             </button>
           </div>
@@ -159,7 +159,7 @@ export default function Footer() {
                   <FileText className="w-6 h-6 text-brand-blue" />
                 )}
                 <h3 className="text-xl font-bold tracking-tight">
-                  {legalModal === 'privacy' ? 'Privacy Policy' : 'Terms & Conditions'}
+                  {legalModal === 'privacy' ? 'Kebijakan Privasi' : 'Syarat & Ketentuan'}
                 </h3>
               </div>
               <button 
@@ -175,73 +175,57 @@ export default function Footer() {
             <div className="p-6 overflow-y-auto space-y-6 text-sm text-gray-300 font-light leading-relaxed">
               {legalModal === 'privacy' ? (
                 <>
-                  <p className="text-gray-400 italic">Effective Date: May 2026</p>
+                  <p className="text-gray-400 italic">Tanggal Efektif: Mei 2026</p>
                   <div>
                     <h4 className="font-bold text-white mb-2 text-base flex items-center">
-                      <span className="text-brand-lime mr-2">1.</span> Information Collection
+                      <span className="text-brand-lime mr-2">1.</span> Pengumpulan Informasi
                     </h4>
                     <p>
-                      BudJet collects financial transaction inputs, custom budget goals, and optional voice input data strictly to provide AI-driven expense categorization and personal financial summaries.
+                      BudJet mengumpulkan input transaksi keuangan dan tujuan anggaran secara ketat hanya untuk menyediakan ringkasan keuangan pribadi.
                     </p>
                   </div>
                   <div>
                     <h4 className="font-bold text-white mb-2 text-base flex items-center">
-                      <span className="text-brand-lime mr-2">2.</span> Voice &amp; AI Processing
+                      <span className="text-brand-lime mr-2">2.</span> Pemrosesan Suara
                     </h4>
                     <p>
-                      Voice recordings and text commands are processed in real-time to extract monetary values and expense categories. We do not store raw audio files or use personal financial entries to train public generative AI models.
+                      Rekaman suara dan perintah teks diproses secara real-time untuk mengekstrak nilai uang dan kategori. Kami tidak menyimpan file audio mentah.
                     </p>
                   </div>
                   <div>
                     <h4 className="font-bold text-white mb-2 text-base flex items-center">
-                      <span className="text-brand-lime mr-2">3.</span> Data Protection &amp; Security
+                      <span className="text-brand-lime mr-2">3.</span> Keamanan Data
                     </h4>
                     <p>
-                      All sensitive student budget details and account credentials are encrypted in transit and at rest. We utilize robust industry standards to ensure your financial privacy remains secure.
+                      Semua detail anggaran mahasiswa dan kredensial akun dienkripsi dengan standar industri yang kuat.
                     </p>
                   </div>
                   <div>
                     <h4 className="font-bold text-white mb-2 text-base flex items-center">
-                      <span className="text-brand-lime mr-2">4.</span> Third-Party Disclosure
+                      <span className="text-brand-lime mr-2">4.</span> Keterbukaan Pihak Ketiga
                     </h4>
                     <p>
-                      We strictly do not sell, rent, or trade user personal data to third parties, advertisers, or credit scoring agencies.
+                      Kami sama sekali tidak menjual, menyewakan, atau memperdagangkan data pribadi pengguna kepada pihak ketiga.
                     </p>
                   </div>
                 </>
               ) : (
                 <>
-                  <p className="text-gray-400 italic">Last Updated: May 2026</p>
+                  <p className="text-gray-400 italic">Terakhir Diperbarui: Mei 2026</p>
                   <div>
                     <h4 className="font-bold text-white mb-2 text-base flex items-center">
-                      <span className="text-brand-blue mr-2">1.</span> Acceptance of Terms
+                      <span className="text-brand-blue mr-2">1.</span> Penerimaan Syarat
                     </h4>
                     <p>
-                      By accessing and using the BudJet financial application, you agree to comply with these Terms &amp; Conditions. BudJet is designed as a personal financial assistance tool for students and individuals.
+                      Dengan mengakses dan menggunakan aplikasi BudJet, Anda setuju untuk mematuhi Syarat & Ketentuan ini.
                     </p>
                   </div>
                   <div>
                     <h4 className="font-bold text-white mb-2 text-base flex items-center">
-                      <span className="text-brand-blue mr-2">2.</span> Accuracy of AI Assistant
+                      <span className="text-brand-blue mr-2">2.</span> Tanggung Jawab Pengguna
                     </h4>
                     <p>
-                      While our AI features strive for high accuracy in automated expense tracking, users are encouraged to verify recognized totals and categorized items. BudJet is not liable for incidental discrepancies in personal recording.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-white mb-2 text-base flex items-center">
-                      <span className="text-brand-blue mr-2">3.</span> User Responsibilities
-                    </h4>
-                    <p>
-                      You are responsible for safeguarding your login credentials and maintaining the confidentiality of your account session. Any unauthorized use should be reported to our support team immediately.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-white mb-2 text-base flex items-center">
-                      <span className="text-brand-blue mr-2">4.</span> Service Modifications
-                    </h4>
-                    <p>
-                      We continuously enhance BudJet with new features, AI integrations, and UI refinements. We reserve the right to modify or discontinue experimental features with prior notice.
+                      Anda bertanggung jawab untuk menjaga kredensial login Anda.
                     </p>
                   </div>
                 </>
@@ -254,7 +238,7 @@ export default function Footer() {
                 onClick={() => setLegalModal(null)}
                 className="px-5 py-2 rounded-xl bg-brand-lime text-brand-slate font-bold text-sm hover:bg-brand-lime/90 transition-all cursor-pointer shadow-md hover:shadow-brand-lime/20"
               >
-                I Understand
+                Saya Mengerti
               </button>
             </div>
 

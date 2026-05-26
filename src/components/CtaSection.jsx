@@ -34,18 +34,18 @@ export default function CtaSection() {
         <div className="max-w-3xl mx-auto space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-lime/10 border border-brand-lime-dark/30 text-brand-lime text-xs font-bold uppercase tracking-wider mb-2">
             <Rocket className="w-3.5 h-3.5 text-brand-lime animate-bounce" style={{ animationDuration: '3s' }} />
-            COMING SOON TO YOUR SMARTPHONE
+            SEGERA HADIR DI SMARTPHONE ANDA
           </div>
           
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight font-jakarta">
-            Ready to Transform How <br />
+            Siap Mengubah Cara <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime to-white">
-              You Manage Your Allowance?
+              Mengelola Uang Saku Anda?
             </span>
           </h2>
           
           <p className="text-gray-300 text-base sm:text-lg lg:text-xl font-light leading-relaxed max-w-2xl mx-auto">
-            Join thousands of students who have upgraded to a smarter, faster, and stress-free financial life with BudJet.
+            Bergabunglah dengan ribuan mahasiswa yang telah beralih ke pengelolaan keuangan yang lebih cerdas, cepat, dan tanpa stres bersama BudJet.
           </p>
 
           {/* Action CTAs */}
@@ -57,12 +57,12 @@ export default function CtaSection() {
               className="group bg-brand-lime text-brand-slate hover:bg-brand-lime-dark text-base sm:text-lg font-extrabold px-10 py-4.5 rounded-full shadow-2xl hover:shadow-brand-lime/20 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 w-full sm:w-auto flex items-center justify-center cursor-pointer"
             >
               <Download className="mr-2.5 w-5 h-5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-              Download APK
+              Unduh APK
             </a>
           </div>
 
           <p className="text-xs text-gray-500 font-medium">
-            Available exclusively for Android. No credit card required, 100% secure for students.
+            Tersedia eksklusif untuk Android. 100% aman untuk mahasiswa.
           </p>
         </div>
 

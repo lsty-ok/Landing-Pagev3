@@ -7,54 +7,54 @@ gsap.registerPlugin(ScrollTrigger)
 
 const TESTIMONIALS_COL_1 = [
   {
-    quote: "Incredibly helpful for students on a tight budget. The daily allowance algorithm ensures I never overspend again!",
+    quote: "Sangat membantu untuk mahasiswa dengan budget pas-pasan. Algoritma jatah harian memastikan saya tidak boros lagi!",
     name: "Farhan Ardiansyah",
-    role: "Information Systems Student, PENS",
+    role: "Mahasiswa Sistem Informasi, PENS",
     rating: 5,
   },
   {
-    quote: "I absolutely love the Voice Input feature! I just say 'bought lunch for twenty thousand' and it's logged automatically. Brilliant.",
+    quote: "Saya sangat suka fitur input suara! Tinggal bilang 'beli makan dua puluh ribu' dan langsung tercatat otomatis. Brilian.",
     name: "Siti Rahma",
-    role: "English Literature Student, Unesa",
+    role: "Mahasiswa Sastra Inggris, Unesa",
     rating: 5,
   },
   {
-    quote: "Reporting my expenses to my parents is so easy now. Just export the history into a CSV file, and I'm done!",
+    quote: "Lapor pengeluaran ke orang tua jadi gampang banget. Tinggal ekspor riwayat ke file CSV, beres!",
     name: "Bagus Prasetyo",
-    role: "Mechanical Engineering Student, ITS",
+    role: "Mahasiswa Teknik Mesin, ITS",
     rating: 5,
   },
   {
-    quote: "The UI is very clean, the dark mode looks cool, and it's super easy to understand. Quick login with Google is a huge plus.",
+    quote: "UI-nya sangat bersih, dark mode-nya keren, dan super gampang dipahami. Login cepat pakai Google juga nilai plus.",
     name: "Nabila Putri",
-    role: "Visual Communication Design Student, ITB",
+    role: "Mahasiswa DKV, ITB",
     rating: 5,
   },
 ]
 
 const TESTIMONIALS_COL_2 = [
   {
-    quote: "The perfect finance app for students! It's free, has no ads, and truly helps manage my monthly allowance.",
+    quote: "Aplikasi keuangan yang sempurna untuk mahasiswa! Gratis, tanpa iklan, dan benar-benar membantu mengatur uang saku bulanan.",
     name: "Rian Hidayat",
-    role: "Finance Management Student, UGM",
+    role: "Mahasiswa Manajemen Keuangan, UGM",
     rating: 5,
   },
   {
-    quote: "The Smart Budgeting feature is top-notch. I now know my exact safe daily limit so I can still afford a nice meal at the end of the month.",
+    quote: "Fitur pengatur anggarannya juara. Saya jadi tahu persis batas aman harian sehingga akhir bulan masih bisa makan enak.",
     name: "Amanda Lestari",
-    role: "Medical Student, Airlangga University",
+    role: "Mahasiswa Kedokteran, Universitas Airlangga",
     rating: 5,
   },
   {
-    quote: "Tried many expense trackers, but BudJet fits best. It's simple, lightweight, cloud-synced, and lightning fast for logging.",
+    quote: "Udah coba banyak pencatat pengeluaran, tapi BudJet paling pas. Simpel, ringan, sinkron ke cloud, dan catatnya secepat kilat.",
     name: "Dwi Cahyo",
-    role: "Computer Science Student, Undip",
+    role: "Mahasiswa Ilmu Komputer, Undip",
     rating: 5,
   },
   {
-    quote: "A true lifesaver for dorm students! From constantly running out of money mid-month to being financially disciplined with BudJet.",
+    quote: "Penyelamat sejati anak kos! Dari yang sering kehabisan uang di pertengahan bulan, jadi lebih disiplin finansial berkat BudJet.",
     name: "Putu Gede",
-    role: "Accounting Student, Udayana University",
+    role: "Mahasiswa Akuntansi, Universitas Udayana",
     rating: 5,
   },
 ]
@@ -186,18 +186,18 @@ export default function TestimonialSection() {
         {/* Left Side Content Column */}
         <div className="space-y-8 select-text flex flex-col justify-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-brand-lime text-xs font-bold uppercase tracking-wider mb-2 w-fit">
-            💬 Student Reviews
+            💬 Ulasan Mahasiswa
           </div>
           
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
-            What They <br />
+            Apa Kata <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime to-white">
-              Are Saying
+              Mereka
             </span>
           </h2>
           
           <p className="text-gray-400 text-base sm:text-lg lg:text-xl font-light leading-relaxed max-w-xl">
-            Over 10,000 students nationwide have revolutionized how they manage their allowances with BudJet. Explore their success stories!
+            Lebih dari 10.000 mahasiswa di seluruh Indonesia telah mengubah cara mereka mengelola uang saku dengan BudJet. Lihat kisah mereka!
           </p>
 
           {/* Social Proof Stats Badge */}
@@ -216,7 +216,7 @@ export default function TestimonialSection() {
               <div className="font-extrabold text-white flex items-center gap-1">
                 ⭐⭐⭐⭐⭐ <span className="font-bold text-xs ml-1 bg-brand-lime text-brand-slate px-2 py-0.5 rounded-md">4.9/5</span>
               </div>
-              <p className="text-gray-400 text-xs font-medium mt-0.5">Average 4.9/5 rating on Google Play Store</p>
+              <p className="text-gray-400 text-xs font-medium mt-0.5">Rata-rata rating 4.9/5 di Google Play Store</p>
             </div>
           </div>
         </div>

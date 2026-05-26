@@ -4,12 +4,12 @@ import { ChevronDown, HelpCircle } from 'lucide-react'
 
 const FAQ_ITEMS = [
   {
-    question: "Is BudJet completely free for students?",
-    answer: "Yes, 100% free! All core features of BudJet—including automated daily budgeting, smart voice logging, and monthly reports exports—are fully accessible for free with absolutely no hidden fees or intrusive advertisements.",
+    question: "Apakah BudJet benar-benar gratis untuk mahasiswa?",
+    answer: "Ya, 100% gratis! Semua fitur utama BudJet—termasuk pembuatan batas pengeluaran harian, asisten suara, dan ekspor laporan—dapat diakses sepenuhnya tanpa biaya tersembunyi atau iklan yang mengganggu.",
   },
   {
-    question: "How does the Instant Voice Logging feature work?",
-    answer: "It's extremely simple! Just tap the microphone button in the app and speak your transactions naturally, like, 'Bought an avocado juice for fifteen thousand'. Our finance AI instantly recognizes the amount and categorizes it under Food & Drinks in the blink of an eye.",
+    question: "Bagaimana cara kerja fitur Catat Cepat via Suara?",
+    answer: "Sangat mudah! Cukup tekan tombol mikrofon di aplikasi dan sebutkan transaksi Anda secara alami, seperti, 'Beli jus alpukat dua belas ribu'. Sistem kami akan langsung mengenali nominal dan kategorinya dalam sekejap.",
   },
 ]
 
@@ -61,13 +61,13 @@ export default function FaqSection() {
         {/* Section Header */}
         <div className="text-center mb-20">
           <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-slate/5 border border-brand-slate/10 text-brand-slate text-xs font-bold uppercase tracking-wider mb-6">
-            <HelpCircle className="w-4 h-4 mr-1.5 text-brand-slate" /> Common Questions
+            <HelpCircle className="w-4 h-4 mr-1.5 text-brand-slate" /> Pertanyaan Umum
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-slate tracking-tight mb-6">
-            Have Questions?
+            Punya Pertanyaan?
           </h2>
           <p className="text-brand-text-muted text-base sm:text-lg font-light">
-            Find quick answers to help you start managing your daily allowance smarter and with total control.
+            Temukan jawaban cepat untuk membantu Anda mulai mengelola uang saku harian lebih cerdas.
           </p>
         </div>
 

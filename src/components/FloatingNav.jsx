@@ -62,10 +62,10 @@ export default function FloatingNav() {
   }, [])
 
   const navItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'Features', href: '#fitur' },
-    { label: 'Simulator', href: '#simulator' },
-    { label: 'Reviews', href: '#ulasan' },
+    { label: 'Beranda', href: '#home' },
+    { label: 'Fitur', href: '#fitur' },
+    { label: 'Simulasi', href: '#simulator' },
+    { label: 'Ulasan', href: '#ulasan' },
     { label: 'FAQ', href: '#faq' },
   ]
 
@@ -131,7 +131,7 @@ export default function FloatingNav() {
               onClick={(e) => scrollToSection(e, '#cta')}
               className="inline-flex items-center justify-center px-5 py-2 bg-brand-lime text-brand-slate hover:bg-brand-lime-dark rounded-full font-bold text-xs tracking-tight shadow-sm hover:shadow-[0_4px_15px_rgba(212,232,102,0.3)] hover:-translate-y-[1px] active:translate-y-0 transition-all duration-300 group select-none cursor-pointer"
             >
-              Download
+              Unduh
               <ArrowRight className="ml-1.5 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" />
             </a>
           </div>
@@ -177,7 +177,7 @@ export default function FloatingNav() {
               }}
               className="inline-flex items-center justify-center py-2.5 bg-brand-lime text-brand-slate hover:bg-brand-lime-dark rounded-full font-bold text-sm tracking-tight shadow-sm cursor-pointer"
             >
-              Download Now
+              Unduh Sekarang
               <ArrowRight className="ml-1.5 w-4 h-4" />
             </a>
           </div>

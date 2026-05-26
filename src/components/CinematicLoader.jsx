@@ -90,7 +90,7 @@ export default function CinematicLoader({ onComplete }) {
       {/* High-Tech, Minimal Progress Console at Bottom */}
       <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2.5 z-10">
         <span className="text-[9px] font-mono tracking-[0.35em] text-white/30 uppercase">
-          SYSTEM INITIALIZING
+          SISTEM DIINISIALISASI
         </span>
         <span className="text-brand-lime font-mono text-[11px] font-bold tracking-[0.2em]">
           {progress.toString().padStart(3, '0')}%

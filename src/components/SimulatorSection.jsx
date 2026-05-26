@@ -6,12 +6,12 @@ export default function SimulatorSection() {
   const simDays = 30 // Fixed default 30 days
   
   const [simTransactions, setSimTransactions] = useState([
-    { id: 1, amount: 800000, category: 'Bills & Utilities', description: 'Dorm Rent', frequency: 'monthly' },
-    { id: 2, amount: 15000, category: 'Transportation', description: 'Gasoline', frequency: 'daily' },
+    { id: 1, amount: 800000, category: 'Tagihan', description: 'Bayar Kos', frequency: 'monthly' },
+    { id: 2, amount: 15000, category: 'Transportasi', description: 'Bensin', frequency: 'daily' },
   ])
 
   const [newSimTxnAmount, setNewSimTxnAmount] = useState('')
-  const [newSimTxnCategory, setNewSimTxnCategory] = useState('Food & Beverage')
+  const [newSimTxnCategory, setNewSimTxnCategory] = useState('Makanan & Minuman')
   const [newSimTxnDesc, setNewSimTxnDesc] = useState('')
   const [newSimTxnFreq, setNewSimTxnFreq] = useState('monthly')
 
@@ -36,7 +36,7 @@ export default function SimulatorSection() {
       id: Date.now(),
       amount: Number(newSimTxnAmount),
       category: newSimTxnCategory,
-      description: newSimTxnDesc || 'Routine expense',
+      description: newSimTxnDesc || 'Pengeluaran rutin',
       frequency: newSimTxnFreq
     }
     setSimTransactions([newTxn, ...simTransactions])
@@ -74,39 +74,39 @@ export default function SimulatorSection() {
   }
 
   const getFreqLabel = (freq) => {
-    if (freq === 'daily') return 'Daily'
-    if (freq === 'weekly') return 'Weekly'
-    return 'Monthly'
+    if (freq === 'daily') return 'Harian'
+    if (freq === 'weekly') return 'Mingguan'
+    return 'Bulanan'
   }
 
   const simInsights = (() => {
     if (simTransactions.length === 0) {
       return {
-        title: "Perfect Financial Health",
-        text: `No routine expenses recorded yet. You have your full daily allowance of ${formatRupiah(simMonthlyBudget / simDays)} to spend freely!`,
+        title: "Kesehatan Finansial Sempurna",
+        text: `Belum ada pengeluaran rutin. Anda memiliki jatah harian penuh sebesar ${formatRupiah(simMonthlyBudget / simDays)} untuk digunakan!`,
         icon: <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />,
         colorBg: "bg-emerald-50 border-emerald-200 text-emerald-900"
       }
     }
     if (simRemainingMonthly < 0) {
       return {
-        title: "Over-Budget Warning!",
-        text: `Your routine expenses exceed your monthly budget by ${formatRupiah(Math.abs(simRemainingMonthly))}. Please reduce some expenses to maintain healthy finances.`,
+        title: "Peringatan Over-Budget!",
+        text: `Pengeluaran rutin Anda melebihi anggaran bulanan sebesar ${formatRupiah(Math.abs(simRemainingMonthly))}. Kurangi beberapa pengeluaran agar keuangan tetap sehat.`,
         icon: <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0" />,
         colorBg: "bg-red-50 border-red-200 text-red-900"
       }
     }
     if (simRemainingMonthly < (simMonthlyBudget * 0.2)) {
       return {
-        title: "Critical Budget Remaining!",
-        text: `Your remaining monthly budget is running low. Your safe daily limit is down to ${formatRupiah(simDailyBudget)}. Spend wisely!`,
+        title: "Sisa Anggaran Kritis!",
+        text: `Sisa anggaran bulanan Anda menipis. Batas aman harian Anda turun menjadi ${formatRupiah(simDailyBudget)}. Belanjalah dengan bijak!`,
         icon: <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0" />,
         colorBg: "bg-amber-50 border-amber-200 text-amber-900"
       }
     }
     return {
-      title: "Healthy Student Finances",
-      text: `Excellent! After deducting your routine expenses, you still have a safe daily allowance of ${formatRupiah(simDailyBudget)}.`,
+      title: "Keuangan Mahasiswa Sehat",
+      text: `Luar biasa! Setelah dikurangi pengeluaran rutin, Anda masih memiliki uang saku harian aman sebesar ${formatRupiah(simDailyBudget)}.`,
       icon: <Sparkles className="w-5 h-5 text-emerald-600 flex-shrink-0" />,
       colorBg: "bg-emerald-50 border-emerald-200 text-emerald-900"
     }
@@ -124,13 +124,13 @@ export default function SimulatorSection() {
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-lime/20 border border-brand-lime-dark/40 text-brand-slate text-xs font-bold uppercase tracking-wider mb-2 shadow-sm">
             <Calculator className="w-4 h-4 text-brand-slate" />
-            <span>Interactive Feature Showcase</span>
+            <span>Simulasi Fitur Interaktif</span>
           </div>
           <h2 className="text-4xl sm:text-5xl font-extrabold text-brand-slate tracking-tight leading-tight font-jakarta">
-            Simulator <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-slate-800 to-brand-lime">Algoritma Smart Budgeting</span>
+            Simulator <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-slate-800 to-brand-lime">Pengelolaan Anggaran</span>
           </h2>
           <p className="text-gray-600 text-base sm:text-lg font-light leading-relaxed">
-            Interactive visualization tool to test the <b className="font-semibold text-brand-slate">"Daily Smart Budgeting Engine"</b> logic from the BudJet mobile app. Set up your allowance scenario and log your routine expenses!
+            Alat visualisasi interaktif untuk mencoba logika sistem aplikasi BudJet. Atur skenario uang saku Anda dan catat pengeluaran rutin!
           </p>
         </div>
 
@@ -144,12 +144,12 @@ export default function SimulatorSection() {
             <div className="space-y-4">
               <div className="flex items-center gap-3 border-b border-brand-border pb-3">
                 <span className="flex items-center justify-center w-7 h-7 rounded-full bg-brand-lime text-brand-slate font-extrabold text-xs">1</span>
-                <h3 className="text-lg font-bold text-brand-slate tracking-tight">User Profile Scenario</h3>
+                <h3 className="text-lg font-bold text-brand-slate tracking-tight">Skenario Profil Pengguna</h3>
               </div>
 
               <div className="space-y-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-brand-text-muted">Monthly Student Allowance</label>
+                  <label className="text-xs font-bold uppercase tracking-wider text-brand-text-muted">Uang Saku Mahasiswa Bulanan</label>
                   <div className="relative flex items-center">
                     <span className="absolute left-4 text-sm font-extrabold text-brand-slate">Rp</span>
                     <input 
@@ -163,8 +163,8 @@ export default function SimulatorSection() {
                 </div>
 
                 <div className="space-y-1.5 flex justify-between items-center bg-brand-bg p-3 rounded-xl border border-brand-border">
-                  <span className="text-xs font-bold uppercase tracking-wider text-brand-text-muted">Time Period (Default)</span>
-                  <span className="font-extrabold text-brand-slate text-sm">30 Days</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-brand-text-muted">Periode Waktu</span>
+                  <span className="font-extrabold text-brand-slate text-sm">30 Hari</span>
                 </div>
               </div>
             </div>
@@ -173,12 +173,12 @@ export default function SimulatorSection() {
             <div className="space-y-4 pt-2">
               <div className="flex items-center gap-3 border-b border-brand-border pb-3">
                 <span className="flex items-center justify-center w-7 h-7 rounded-full bg-brand-slate text-white font-extrabold text-xs">2</span>
-                <h3 className="text-lg font-bold text-brand-slate tracking-tight">Add Planned Expense</h3>
+                <h3 className="text-lg font-bold text-brand-slate tracking-tight">Tambah Rencana Pengeluaran</h3>
               </div>
 
               <form onSubmit={handleAddSimTxn} className="space-y-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-brand-text-muted">Amount (Rp)</label>
+                  <label className="text-xs font-bold uppercase tracking-wider text-brand-text-muted">Jumlah (Rp)</label>
                   <div className="relative flex items-center">
                     <span className="absolute left-3 text-sm font-extrabold text-brand-slate">Rp</span>
                     <input 
@@ -186,51 +186,51 @@ export default function SimulatorSection() {
                       className="w-full pl-10 pr-3 py-2.5 bg-brand-bg border border-brand-border rounded-xl text-brand-slate font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-lime transition-all"
                       value={newSimTxnAmount} 
                       onChange={(e) => setNewSimTxnAmount(e.target.value)} 
-                      placeholder="e.g. 50000"
+                      placeholder="Cth. 50000"
                     />
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold uppercase tracking-wider text-brand-text-muted">Frequency</label>
+                    <label className="text-xs font-bold uppercase tracking-wider text-brand-text-muted">Frekuensi</label>
                     <select 
                       className="w-full px-3 py-2.5 bg-brand-bg border border-brand-border rounded-xl text-brand-slate font-bold text-xs focus:outline-none focus:ring-2 focus:ring-brand-lime transition-all h-[42px]"
                       value={newSimTxnFreq} 
                       onChange={(e) => setNewSimTxnFreq(e.target.value)}
                     >
-                      <option value="daily">Every Day</option>
-                      <option value="weekly">Every Week</option>
-                      <option value="monthly">Every Month</option>
+                      <option value="daily">Setiap Hari</option>
+                      <option value="weekly">Setiap Minggu</option>
+                      <option value="monthly">Setiap Bulan</option>
                     </select>
                   </div>
                   
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold uppercase tracking-wider text-brand-text-muted">Category</label>
+                    <label className="text-xs font-bold uppercase tracking-wider text-brand-text-muted">Kategori</label>
                     <select 
                       className="w-full px-3 py-2.5 bg-brand-bg border border-brand-border rounded-xl text-brand-slate font-bold text-xs focus:outline-none focus:ring-2 focus:ring-brand-lime transition-all h-[42px]"
                       value={newSimTxnCategory} 
                       onChange={(e) => setNewSimTxnCategory(e.target.value)}
                     >
-                      <option value="Food & Beverage">🍔 Food & Beverage</option>
-                      <option value="Transportation">🚗 Transportation</option>
-                      <option value="Entertainment">🍿 Entertainment</option>
-                      <option value="Healthcare">💊 Healthcare</option>
-                      <option value="Shopping">🛍️ Shopping</option>
-                      <option value="Bills & Utilities">⚡ Bills & Utilities</option>
-                      <option value="Others">📦 Others</option>
+                      <option value="Makanan & Minuman">🍔 Makanan & Minuman</option>
+                      <option value="Transportasi">🚗 Transportasi</option>
+                      <option value="Hiburan">🍿 Hiburan</option>
+                      <option value="Kesehatan">💊 Kesehatan</option>
+                      <option value="Belanja">🛍️ Belanja</option>
+                      <option value="Tagihan">⚡ Tagihan</option>
+                      <option value="Lainnya">📦 Lainnya</option>
                     </select>
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-brand-text-muted">Transaction Notes (Optional)</label>
+                  <label className="text-xs font-bold uppercase tracking-wider text-brand-text-muted">Catatan Transaksi (Opsional)</label>
                   <input 
                     type="text" 
                     className="w-full px-4 py-2.5 bg-brand-bg border border-brand-border rounded-xl text-brand-slate text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-lime transition-all"
                     value={newSimTxnDesc} 
                     onChange={(e) => setNewSimTxnDesc(e.target.value)} 
-                    placeholder="e.g. Spicy meatballs via Go-Food"
+                    placeholder="Cth. Bakso pedas di Go-Food"
                   />
                 </div>
 
@@ -239,7 +239,7 @@ export default function SimulatorSection() {
                   className="w-full group bg-brand-lime text-brand-slate hover:bg-brand-lime-dark font-extrabold py-3.5 px-6 rounded-xl shadow-md hover:shadow-brand-lime/20 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2 text-sm cursor-pointer"
                 >
                   <Plus className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
-                  <span>Add Expense Plan</span>
+                  <span>Tambah Rencana</span>
                 </button>
               </form>
             </div>
@@ -254,7 +254,7 @@ export default function SimulatorSection() {
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-brand-border pb-4">
                 <div className="flex items-center gap-3">
                   <span className="flex items-center justify-center w-7 h-7 rounded-full bg-brand-lime text-brand-slate font-extrabold text-xs">3</span>
-                  <h3 className="text-lg font-bold text-brand-slate tracking-tight">Algorithm Calculation Results</h3>
+                  <h3 className="text-lg font-bold text-brand-slate tracking-tight">Hasil Kalkulasi Algoritma</h3>
                 </div>
                 {simTransactions.length > 0 && (
                   <button 
@@ -262,7 +262,7 @@ export default function SimulatorSection() {
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg transition-all cursor-pointer self-end sm:self-auto"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
-                    <span>Clear All</span>
+                    <span>Hapus Semua</span>
                   </button>
                 )}
               </div>
@@ -271,24 +271,24 @@ export default function SimulatorSection() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 
                 <div className="p-4 bg-brand-bg rounded-2xl border-l-4 border-brand-lime border border-brand-border shadow-sm flex flex-col justify-between">
-                  <span className="text-xs font-bold text-brand-text-muted uppercase tracking-wider">Initial Budget</span>
+                  <span className="text-xs font-bold text-brand-text-muted uppercase tracking-wider">Anggaran Awal</span>
                   <span className="text-xl font-extrabold text-slate-800 mt-1">{formatRupiah(simMonthlyBudget)}</span>
                 </div>
                 
                 <div className="p-4 bg-brand-bg rounded-2xl border-l-4 border-blue-500 border border-brand-border shadow-sm flex flex-col justify-between">
-                  <span className="text-xs font-bold text-brand-text-muted uppercase tracking-wider">Estimated 30-Day Expense</span>
+                  <span className="text-xs font-bold text-brand-text-muted uppercase tracking-wider">Estimasi Pengeluaran 30 Hari</span>
                   <span className="text-xl font-extrabold text-slate-800 mt-1">{formatRupiah(simTotalMonthlyExpenses)}</span>
                 </div>
 
                 <div className={`p-4 bg-brand-bg rounded-2xl border-l-4 border border-brand-border shadow-sm flex flex-col justify-between ${simIsOverbudget ? 'border-red-500 bg-red-50/50' : 'border-emerald-500'}`}>
-                  <span className="text-xs font-bold text-brand-text-muted uppercase tracking-wider">Remaining Free Money</span>
+                  <span className="text-xs font-bold text-brand-text-muted uppercase tracking-wider">Sisa Uang Bebas</span>
                   <span className={`text-xl font-extrabold mt-1 ${simIsOverbudget ? 'text-red-600' : 'text-emerald-600'}`}>
                     {formatRupiah(simRemainingMonthly)}
                   </span>
                 </div>
 
                 <div className={`p-4 rounded-2xl border-l-4 shadow-sm flex flex-col justify-between ${simIsOverbudget ? 'border-red-500 bg-red-100/50' : 'border-brand-lime bg-brand-lime/10'}`}>
-                  <span className="text-xs font-bold text-brand-slate uppercase tracking-wider">Daily Allowance Limit</span>
+                  <span className="text-xs font-bold text-brand-slate uppercase tracking-wider">Batas Uang Saku Harian</span>
                   <span className={`text-2xl font-extrabold mt-1 ${simIsOverbudget ? 'text-red-600' : 'text-brand-slate'}`}>
                     {simIsOverbudget ? 'Rp 0' : formatRupiah(simDailyBudget)}
                   </span>
@@ -300,7 +300,7 @@ export default function SimulatorSection() {
               <div className={`p-5 rounded-2xl border space-y-2 transition-all ${simInsights.colorBg}`}>
                 <div className="flex items-center gap-2 font-extrabold text-sm tracking-tight">
                   {simInsights.icon}
-                  <span>BUDJET ENGINE SMART ANALYSIS</span>
+                  <span>ANALISIS CERDAS BUDJET</span>
                 </div>
                 <p className="text-xs sm:text-sm leading-relaxed font-medium opacity-90">
                   {simInsights.text}
@@ -309,11 +309,11 @@ export default function SimulatorSection() {
 
               {/* Simulated Transactions List */}
               <div className="space-y-3 pt-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-brand-text-muted block">Saved Planned Expenses:</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-brand-text-muted block">Rencana Pengeluaran Tersimpan:</span>
                 
                 {simTransactions.length === 0 ? (
                   <div className="text-center py-8 bg-brand-bg border border-brand-border rounded-2xl text-gray-400 font-light text-sm italic">
-                    No planned expenses recorded yet.
+                    Belum ada rencana pengeluaran yang dicatat.
                   </div>
                 ) : (
                   <div className="max-h-60 overflow-y-auto border border-brand-border rounded-2xl divide-y divide-brand-border bg-brand-bg/50 pr-1">
